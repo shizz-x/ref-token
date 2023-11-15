@@ -111,6 +111,8 @@ contract ReffererToken is ERC20 {
         for(uint level = 0; level < MAX_LEVEL; level++){
             if(leaderRanks[level].leaderCommitment <= Users[msg.sender].mintedAmount && leaderRanks[level].refferalSum <= Users[msg.sender].refferalsMintedAmount  ){
                 reward += Users[msg.sender].possibleRewardByLevel[level];
+                Users[msg.sender].possibleRewardByLevel[level] = 0;
+                
             }
             else{
                 break;
@@ -122,6 +124,7 @@ contract ReffererToken is ERC20 {
         }
 
     }
+    
 
     
     function getUserRefferer(address user) external view returns (UserStruct memory) {
