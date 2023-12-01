@@ -105,23 +105,26 @@ contract ReffererToken is ERC20 {
 
     function withdraw() external {
         require(Users[msg.sender].refferalsMintedAmount > 0 && leaderRanks[0].leaderCommitment <= Users[msg.sender].mintedAmount, "Nothing to withdraw");
+        
 
         uint reward = 0;
 
         for(uint level = 0; level < MAX_LEVEL; level++){
-            if(leaderRanks[level].leaderCommitment <= Users[msg.sender].mintedAmount && leaderRanks[level].refferalSum <= Users[msg.sender].refferalsMintedAmount  ){
+            if(
+                leaderRanks[level].leaderCommitment <= Users[msg.sender].mintedAmount &&
+             leaderRanks[level].refferalSum <= Users[msg.sender].refferalsMintedAmount
+             ){
                 reward += Users[msg.sender].possibleRewardByLevel[level];
                 Users[msg.sender].possibleRewardByLevel[level] = 0;
-                
             }
             else{
                 break;
             }
         }
+        require(reward > 0);
 
-        if(reward > 0){
-            payable(msg.sender).transfer(reward);
-        }
+        payable(msg.sender).transfer(reward);
+        
 
     }
     
@@ -141,6 +144,22 @@ contract ReffererToken is ERC20 {
     }
     function mintStarts() public view virtual returns (bool) {
         return _mintStarts;
+    }
+    function getPosibleReward(address user) public view virtual returns (uint256){
+        uint reward = 0;
+
+        for(uint level = 0; level < MAX_LEVEL; level++){
+            if(
+                leaderRanks[level].leaderCommitment <= Users[user].mintedAmount &&
+                leaderRanks[level].refferalSum <= Users[user].refferalsMintedAmount
+             ){
+                reward += Users[user].possibleRewardByLevel[level];
+            }
+            else{
+                break;
+            }
+        }
+        return reward
     }
     
 }

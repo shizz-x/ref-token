@@ -1,29 +1,34 @@
 import React, { useEffect, useState } from "react";
 import { WalletContext } from "../Context/Wallet";
 import { useContext } from "react";
+import "../Css/mint.css";
+import { NULL_REFFERER_ADDRESS } from "../contract/RefToken";
+import TokenName from "../Components/Mint/TokenName";
+import MintedAmount from "../Components/Mint/MintedAmount";
+import MintPrice from "../Components/Mint/MintPrice";
+import MintingAmount from "../Components/Mint/MintingAmount";
+import Header from "../Components/Mint/Header";
+import Inputs from "../Components/Mint/Inputs";
+import DashboardInfo from "../Components/Mint/DashboardInfo";
 
-function getRefFromUrl(url) {
-  const urlObj = new URL(url);
-
-  const ref = urlObj.searchParams.get("ref");
-  return ref || "";
-}
 function generateRefferalLink(address) {
   const urlObj = new URL(window.location.href);
-  return window.location.origin + "/#/mint" + "?ref=" + address;
+  return window.location.origin + "/mint" + "?ref=" + address;
 }
 
 const defaultState = {
-  decimals: 18n,
-  maxSupply: 3000000000000000000000000n,
-  minTokensBuy: 1000000000n,
-  mintStarts: true,
-  tokenName: "",
-  tokenSymbol: "MST",
-  tokensPerWei: 100n,
-  totalSupply: 210000000000000000000000n,
+  decimals: undefined,
+  maxSupply: undefined,
+  minTokensBuy: undefined,
+  mintStarts: undefined,
+  tokenName: undefined,
+  tokenSymbol: undefined,
+  tokensPerWei: undefined,
+  totalSupply: undefined,
 };
-
+const handleClick = (e) => {
+  e.target.select();
+};
 export default function Mint() {
   const {
     connectWallet,
@@ -39,7 +44,12 @@ export default function Mint() {
   const [reffererInputAvaliavle, setReffererInputAvaliavle] = useState(true);
   const [mintAmount, setMintAmount] = useState(0);
   const [mintPageProps, setMintPageProps] = useState(defaultState);
-
+  const [MINTPAGESHOWN, SETMINTPAGESHOWN] = useState(true);
+  const [userInfo, setUserInfo] = useState(undefined);
+  const [canWithdraw, setCanWithdraw] = useState(false);
+  const handleChangePage = (state) => {
+    SETMINTPAGESHOWN(state);
+  };
   const handleChangeRefferer = (event) => {
     event.preventDefault();
 
@@ -76,6 +86,13 @@ export default function Mint() {
       minTokensBuy,
     });
   };
+
+  const getUserInfo = async () => {
+    let userInfo = await contractwss.methods.getUserRefferer(address).call();
+    console.log(userInfo);
+    setUserInfo(userInfo);
+  };
+
   const findReffer = () => {
     const urlObj = new URL(`${window.location.href}`.replace("/#", ""));
     let ref = urlObj.searchParams.get("ref");
@@ -84,121 +101,214 @@ export default function Mint() {
 
   useEffect(() => {
     getStartedInfo();
+    setInterval(() => {
+      getStartedInfo();
+    }, 10000);
   }, []);
+  useEffect(() => {
+    if (reffererValid(address)) {
+      getUserInfo();
+    } else {
+      setUserInfo(undefined);
+    }
+  }, [address]);
 
   function reffererValid(refferer) {
+    console.log(refferer);
     if (!refferer) {
       return false;
     }
     try {
       const isAddress = web3wss.utils.isAddress(refferer);
-      return true;
+      return isAddress;
     } catch (error) {
       return false;
     }
   }
+  const withdraw = async () => {
+    if (canWithdraw) {
+      const gasPrice = await web3wss.eth.getGasPrice();
+      const gasLimit = await contractWithProvider.methods
+        .withdraw()
+        .estimateGas({
+          from: address,
+        });
+      const trx = await contractWithProvider.methods.withdraw().send({
+        from: address,
+        gasPrice: gasPrice,
+        gasLimit: gasLimit,
+      });
+    }
+  };
 
   const mint = async () => {
-    console.log(refferer);
     if (
       mintAmount > 0 &&
-      reffererValid(refferer) &&
       connected &&
       balance >=
         BigInt(web3wss.utils.toWei(mintAmount, "ether")) /
           mintPageProps.tokensPerWei
     ) {
-      if (refferer == address) {
-        setRefferer("");
-        setReffererInputAvaliavle(true);
-        return 1;
+      if (!reffererValid(refferer)) {
+        const gasPrice = await web3wss.eth.getGasPrice();
+        const gasLimit = await contractWithProvider.methods
+          .mintWithRefferer(
+            NULL_REFFERER_ADDRESS,
+            BigInt(web3wss.utils.toWei(mintAmount, "ether"))
+          )
+          .estimateGas({
+            from: address,
+            value:
+              BigInt(web3wss.utils.toWei(mintAmount, "ether")) /
+              mintPageProps.tokensPerWei,
+          });
+
+        const trx = await contractWithProvider.methods
+          .mintWithRefferer(
+            NULL_REFFERER_ADDRESS,
+            BigInt(web3wss.utils.toWei(mintAmount, "ether"))
+          )
+          .send({
+            from: address,
+            value:
+              BigInt(web3wss.utils.toWei(mintAmount, "ether")) /
+              mintPageProps.tokensPerWei,
+            gasLimit: gasLimit,
+            gasPrice: gasPrice,
+          });
+
+        getStartedInfo();
+      } else {
+        if (refferer == address) {
+          setRefferer("");
+          setReffererInputAvaliavle(true);
+          return 1;
+        }
+        const gasPrice = await web3wss.eth.getGasPrice();
+        const gasLimit = await contractWithProvider.methods
+          .mintWithRefferer(
+            refferer,
+            BigInt(web3wss.utils.toWei(mintAmount, "ether"))
+          )
+          .estimateGas({
+            from: address,
+            value:
+              BigInt(web3wss.utils.toWei(mintAmount, "ether")) /
+              mintPageProps.tokensPerWei,
+          });
+
+        const trx = await contractWithProvider.methods
+          .mintWithRefferer(
+            refferer,
+            BigInt(web3wss.utils.toWei(mintAmount, "ether"))
+          )
+          .send({
+            from: address,
+            value:
+              BigInt(web3wss.utils.toWei(mintAmount, "ether")) /
+              mintPageProps.tokensPerWei,
+            gasLimit: gasLimit,
+            gasPrice: gasPrice,
+          });
+
+        getStartedInfo();
       }
-      const gasPrice = await web3wss.eth.getGasPrice();
-      const gasLimit = await contractWithProvider.methods
-        .mintWithRefferer(
-          refferer,
-          BigInt(web3wss.utils.toWei(mintAmount, "ether"))
-        )
-        .estimateGas({
-          from: address,
-          value:
-            BigInt(web3wss.utils.toWei(mintAmount, "ether")) /
-            mintPageProps.tokensPerWei,
-        });
-
-      const trx = await contractWithProvider.methods
-        .mintWithRefferer(
-          refferer,
-          BigInt(web3wss.utils.toWei(mintAmount, "ether"))
-        )
-        .send({
-          from: address,
-          value:
-            BigInt(web3wss.utils.toWei(mintAmount, "ether")) /
-            mintPageProps.tokensPerWei,
-          gasLimit: gasLimit,
-          gasPrice: gasPrice,
-        });
-
-      getStartedInfo();
     } else {
       alert(123);
     }
   };
-
   return (
-    <>
-      <p>{mintPageProps.tokenName} MINT PAGE</p>
-      <p>
-        {mintPageProps.totalSupply == undefined
-          ? "0"
-          : web3wss.utils.fromWei(mintPageProps.totalSupply, "ether")}
-        /
-        {mintPageProps.maxSupply == undefined
-          ? "0"
-          : web3wss.utils.fromWei(mintPageProps.maxSupply, "ether")}{" "}
-        {mintPageProps.tokenSymbol} Minted
-      </p>
-      <p>
-        mint price: 1{mintPageProps.tokenSymbol} ={" "}
-        {1 / parseInt(mintPageProps.tokensPerWei)}ETH
-      </p>
-      <input
-        className="ref_input"
-        disabled={!connected || !reffererInputAvaliavle}
-        placeholder="Refferer"
-        value={refferer}
-        onChange={handleChangeRefferer}
-        type="text"
-        name=""
-        id=""
-      />
-      <input
-        className="ref_input"
-        type="number"
-        name=""
-        disabled={!connected}
-        value={mintAmount}
-        onChange={handleChangeMintAmount}
-        id=""
-        placeholder="Amount"
-      />
-      <button disabled={!connected} onClick={mint} className="ref_input">
-        MINT
-      </button>
-      <p style={{ display: `${mintAmount > 0 ? "block" : "none"}` }}>
-        minting {mintAmount}
-        {mintPageProps.tokenSymbol} for{" "}
-        {web3wss.utils.fromWei(
-          BigInt(web3wss.utils.toWei(mintAmount, "ether")) /
-            mintPageProps.tokensPerWei,
-          "ether"
+    <main className="MINT">
+      <div className="mint_content">
+        <div className="blur"></div>
+        <div className="switch_buttons">
+          <button
+            className={`button-glitch ${MINTPAGESHOWN ? "selected" : ""}`}
+            onClick={() => {
+              handleChangePage(true);
+            }}
+          >
+            Mint
+          </button>
+          <button
+            className={`button-glitch ${MINTPAGESHOWN ? "" : "selected"}`}
+            onClick={() => {
+              handleChangePage(false);
+            }}
+          >
+            Dashboard
+          </button>
+        </div>
+        {MINTPAGESHOWN ? (
+          <div className="mint_wrap">
+            <Header></Header>
+            <TokenName tokenName={mintPageProps.tokenName}></TokenName>
+            <MintedAmount
+              fromWei={web3wss.utils.fromWei}
+              totalSupply={mintPageProps.totalSupply}
+              maxSupply={mintPageProps.maxSupply}
+            ></MintedAmount>
+            <MintPrice
+              tokensPerWei={mintPageProps.tokensPerWei}
+              tokenSymbol={mintPageProps.tokenSymbol}
+            ></MintPrice>
+            <Inputs
+              connected={connected}
+              handleChangeRefferer={handleChangeRefferer}
+              handleChangeMintAmount={handleChangeMintAmount}
+              mintAmount={mintAmount}
+              refferer={refferer}
+              reffererInputAvaliavle={reffererInputAvaliavle}
+            ></Inputs>
+            <button
+              class="mint_button"
+              disabled={!connected || mintAmount <= 0}
+              onClick={mint}
+              role="button"
+            >
+              Mint
+            </button>
+            <MintingAmount
+              fromWei={web3wss.utils.fromWei}
+              toWei={web3wss.utils.toWei}
+              tokensPerWei={mintPageProps.tokensPerWei}
+              tokenSymbol={mintPageProps.tokenSymbol}
+              mintAmount={mintAmount}
+            ></MintingAmount>
+            <div
+              className="refferal_link"
+              style={{ display: `${connected ? "block" : "none"}` }}
+            >
+              <p>your refferal link:</p>
+              <input
+                onClick={handleClick}
+                type="text"
+                value={generateRefferalLink(address)}
+              />
+            </div>
+          </div>
+        ) : (
+          <div className="mint_wrap">
+            <Header></Header>
+            <DashboardInfo
+              fromWei={web3wss.utils.fromWei}
+              userInfo={userInfo}
+              tokenSymbol={mintPageProps.tokenSymbol}
+              contractwss={contractwss}
+              address={address}
+              setCanWithdraw={setCanWithdraw}
+            ></DashboardInfo>
+            <button
+              class="mint_button"
+              disabled={!connected || !canWithdraw}
+              onClick={withdraw}
+              role="button"
+            >
+              Withdraw
+            </button>
+          </div>
         )}
-        ETH
-      </p>
-      <p style={{ display: `${connected ? "block" : "none"}` }}>
-        your ref link: {generateRefferalLink(address)}
-      </p>
-    </>
+      </div>
+    </main>
   );
 }

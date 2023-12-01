@@ -1,29 +1,7 @@
-export const TOKEN_ADDRESS = "0xfEd96a4B1f77ce1adc225E32cf8578792E75eceE";
+export const TOKEN_ADDRESS = "0x634a4a65c2D45Ef506067676188841e5dE11B292";
+export const NULL_REFFERER_ADDRESS =
+  "0xbA31F95114dB4595dAd1E3A8b080942c951F4b38";
 export const TOKEN_ABI = [
-  {
-    inputs: [
-      {
-        internalType: "address",
-        name: "spender",
-        type: "address",
-      },
-      {
-        internalType: "uint256",
-        name: "value",
-        type: "uint256",
-      },
-    ],
-    name: "approve",
-    outputs: [
-      {
-        internalType: "bool",
-        name: "",
-        type: "bool",
-      },
-    ],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
   {
     inputs: [],
     stateMutability: "nonpayable",
@@ -141,48 +119,6 @@ export const TOKEN_ABI = [
     type: "event",
   },
   {
-    inputs: [
-      {
-        internalType: "address",
-        name: "refferer",
-        type: "address",
-      },
-      {
-        internalType: "uint256",
-        name: "amount",
-        type: "uint256",
-      },
-    ],
-    name: "mintWithRefferer",
-    outputs: [],
-    stateMutability: "payable",
-    type: "function",
-  },
-  {
-    inputs: [
-      {
-        internalType: "address",
-        name: "to",
-        type: "address",
-      },
-      {
-        internalType: "uint256",
-        name: "value",
-        type: "uint256",
-      },
-    ],
-    name: "transfer",
-    outputs: [
-      {
-        internalType: "bool",
-        name: "",
-        type: "bool",
-      },
-    ],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
     anonymous: false,
     inputs: [
       {
@@ -211,36 +147,29 @@ export const TOKEN_ABI = [
     inputs: [
       {
         internalType: "address",
-        name: "from",
+        name: "",
         type: "address",
       },
+    ],
+    name: "Users",
+    outputs: [
       {
         internalType: "address",
-        name: "to",
+        name: "refferer",
         type: "address",
       },
       {
         internalType: "uint256",
-        name: "value",
+        name: "mintedAmount",
+        type: "uint256",
+      },
+      {
+        internalType: "uint256",
+        name: "refferalsMintedAmount",
         type: "uint256",
       },
     ],
-    name: "transferFrom",
-    outputs: [
-      {
-        internalType: "bool",
-        name: "",
-        type: "bool",
-      },
-    ],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "withdraw",
-    outputs: [],
-    stateMutability: "nonpayable",
+    stateMutability: "view",
     type: "function",
   },
   {
@@ -271,6 +200,30 @@ export const TOKEN_ABI = [
     inputs: [
       {
         internalType: "address",
+        name: "spender",
+        type: "address",
+      },
+      {
+        internalType: "uint256",
+        name: "value",
+        type: "uint256",
+      },
+    ],
+    name: "approve",
+    outputs: [
+      {
+        internalType: "bool",
+        name: "",
+        type: "bool",
+      },
+    ],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "address",
         name: "account",
         type: "address",
       },
@@ -294,6 +247,25 @@ export const TOKEN_ABI = [
         internalType: "uint8",
         name: "",
         type: "uint8",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "address",
+        name: "user",
+        type: "address",
+      },
+    ],
+    name: "getPosibleReward",
+    outputs: [
+      {
+        internalType: "uint256",
+        name: "",
+        type: "uint256",
       },
     ],
     stateMutability: "view",
@@ -393,6 +365,24 @@ export const TOKEN_ABI = [
     type: "function",
   },
   {
+    inputs: [
+      {
+        internalType: "address",
+        name: "refferer",
+        type: "address",
+      },
+      {
+        internalType: "uint256",
+        name: "amount",
+        type: "uint256",
+      },
+    ],
+    name: "mintWithRefferer",
+    outputs: [],
+    stateMutability: "payable",
+    type: "function",
+  },
+  {
     inputs: [],
     name: "name",
     outputs: [
@@ -435,29 +425,60 @@ export const TOKEN_ABI = [
     inputs: [
       {
         internalType: "address",
-        name: "",
+        name: "to",
         type: "address",
       },
+      {
+        internalType: "uint256",
+        name: "value",
+        type: "uint256",
+      },
     ],
-    name: "Users",
+    name: "transfer",
     outputs: [
       {
+        internalType: "bool",
+        name: "",
+        type: "bool",
+      },
+    ],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
         internalType: "address",
-        name: "refferer",
+        name: "from",
+        type: "address",
+      },
+      {
+        internalType: "address",
+        name: "to",
         type: "address",
       },
       {
         internalType: "uint256",
-        name: "mintedAmount",
-        type: "uint256",
-      },
-      {
-        internalType: "uint256",
-        name: "refferalsMintedAmount",
+        name: "value",
         type: "uint256",
       },
     ],
-    stateMutability: "view",
+    name: "transferFrom",
+    outputs: [
+      {
+        internalType: "bool",
+        name: "",
+        type: "bool",
+      },
+    ],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "withdraw",
+    outputs: [],
+    stateMutability: "nonpayable",
     type: "function",
   },
 ];
