@@ -46,7 +46,7 @@ body {
 .landing_section-features,
 .landing_section-roadmap {
   max-height: 1700px;
-  min-height: 99dvh;
+  min-height: 99vh;
   border-bottom: #000 solid 20px;
   position: relative;
   display: flex;
@@ -90,7 +90,7 @@ body {
   background-size: cover;
   background-repeat: no-repeat;
   background-image: url("../Images/bg_particles.png");
-  width: 100dvw;
+  width: 100vw;
   min-height: fit-content;
   height: 100%;
   z-index: 0;
@@ -553,7 +553,7 @@ body {
   .landing_section-hellophone {
     right: 0;
     top: -50%;
-    max-width: 40dvw;
+    max-width: 40vw;
   }
   .landing_section-history > .landing_section-content {
     padding-bottom: 20rem;
@@ -568,7 +568,7 @@ body {
 @media screen and (max-width: 1400px) {
   .landing_section-content {
     margin: 0;
-    width: 100dvw;
+    width: 100vw;
   }
   .landing_section-roadmap .info_card {
     transform: scale(0.5);
@@ -579,7 +579,7 @@ body {
   .landing_section-hellophone {
     right: -10%;
     top: -50%;
-    max-width: 50dvw;
+    max-width: 50vw;
   }
   .landing_section-fatboyplaying,
   .landing_section-gifts {
@@ -660,7 +660,7 @@ body {
     left: 2%;
   }
   .landing_section-features_spliter img {
-    width: 50dvw;
+    width: 50vw;
   }
 
   .landing_footer-content h1 {
@@ -673,7 +673,7 @@ body {
   .landing_section-hellophone {
     right: -10%;
     top: -50%;
-    max-width: 50dvw;
+    max-width: 50vw;
   }
   .landing_section-cloud_wrapper img {
     width: 100%;
