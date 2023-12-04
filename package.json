@@ -10,7 +10,6 @@
     "big-integer": "^1.6.51",
     "ethers": "^6.6.4",
     "gsap": "^3.12.3",
-    "locomotive-scroll": "^4.1.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-gsap": "^3.2.1",

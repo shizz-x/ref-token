@@ -27,7 +27,7 @@ export default function SectionIntro({ GSAP }) {
         onUpdate: animate,
         pin: true, // pin the trigger element while active
         start: "top top", // when the top of the trigger hits the top of the viewport
-        end: "bottom+=900%", // end after scrolling 500px beyond the start
+        end: "bottom+=500%", // end after scrolling 500px beyond the start
         scrub: true, // smooth scrubbing, takes 1 second to "catch up" to the scrollbar
       },
     });
@@ -35,7 +35,7 @@ export default function SectionIntro({ GSAP }) {
 
   const animate = async (status) => {
     animateText(status.progress);
-    if (status.progress > 0.1) {
+    if (status.progress > 0.01) {
       setLoaded(true);
     } else {
       setLoaded(false);
@@ -64,7 +64,7 @@ export default function SectionIntro({ GSAP }) {
           {outerText}
         </p>
       );
-      setSecondParagraphText(<p>{second_Paragraph_Text}</p>);
+      setSecondParagraphText(<p data="margin">{second_Paragraph_Text}</p>);
     } else {
       progress -= 0.5;
       for (let index = 0; index < second_Paragraph_Text.length; index++) {
@@ -80,7 +80,7 @@ export default function SectionIntro({ GSAP }) {
         </p>
       );
       setSecondParagraphText(
-        <p>
+        <p data="margin">
           <karaoke>{karaokeText}</karaoke>
           {outerText}
         </p>

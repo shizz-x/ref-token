@@ -325,6 +325,9 @@ body {
   left: 0%;
   z-index: 1;
   bottom: -5%;
+  opacity: 0;
+  transform: translateY(200px);
+  transition: transform 1s, opacity 1s;
 }
 .info_card {
   display: flex;
@@ -532,7 +535,7 @@ body {
     width: 70%;
   }
   .bg_particle {
-    height: 120%;
+    height: 110% !important;
   }
   .landing_section-intro p {
     width: 40%;

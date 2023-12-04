@@ -18,67 +18,118 @@ export default function History({ GSAP }) {
   );
   const [animated, setAnimated] = useState(false);
 
-  const animate = async () => {
-    if (animated) {
-      return 0;
-    }
+  // const animate = async () => {
+  //   if (animated) {
+  //     return 0;
+  //   }
 
-    let resultText = "";
-    let splitedText = first_Paragraph_Text.split(" ");
-    await sleep(1000);
-    setAnimated(true);
-    for (let i = 0; i < splitedText.length; i++) {
-      resultText += " " + splitedText[i];
-      let notRevealedWord = "";
-      for (let j = 0; j < splitedText.length; j++) {
-        if (j > i) {
-          notRevealedWord += " " + splitedText[j];
-        }
-      }
-      await sleep(100);
-      setFirstParagraphText(
-        <p>
-          <karaoke>{resultText}</karaoke>
-          {notRevealedWord}
-        </p>
-      );
-    }
+  //   let resultText = "";
+  //   let splitedText = first_Paragraph_Text.split(" ");
+  //   await sleep(1000);
+  //   setAnimated(true);
+  //   for (let i = 0; i < splitedText.length; i++) {
+  //     resultText += " " + splitedText[i];
+  //     let notRevealedWord = "";
+  //     for (let j = 0; j < splitedText.length; j++) {
+  //       if (j > i) {
+  //         notRevealedWord += " " + splitedText[j];
+  //       }
+  //     }
+  //     await sleep(100);
+  //     setFirstParagraphText(
+  //       <p>
+  //         <karaoke>{resultText}</karaoke>
+  //         {notRevealedWord}
+  //       </p>
+  //     );
+  //   }
 
-    resultText = "";
-    splitedText = second_Paragraph_Text.split(" ");
+  //   resultText = "";
+  //   splitedText = second_Paragraph_Text.split(" ");
 
-    for (let i = 0; i < splitedText.length; i++) {
-      resultText += " " + splitedText[i];
-      let notRevealedWord = "";
-      for (let j = 0; j < splitedText.length; j++) {
-        if (j > i) {
-          notRevealedWord += " " + splitedText[j];
-        }
-      }
-      await sleep(100);
-      setSecondParagraphText(
-        <p data="margin">
-          <karaoke>{resultText}</karaoke>
-          {notRevealedWord}
-        </p>
-      );
-    }
-    return 0;
-  };
+  //   for (let i = 0; i < splitedText.length; i++) {
+  //     resultText += " " + splitedText[i];
+  //     let notRevealedWord = "";
+  //     for (let j = 0; j < splitedText.length; j++) {
+  //       if (j > i) {
+  //         notRevealedWord += " " + splitedText[j];
+  //       }
+  //     }
+  //     await sleep(100);
+  //     setSecondParagraphText(
+  //       <p data="margin">
+  //         <karaoke>{resultText}</karaoke>
+  //         {notRevealedWord}
+  //       </p>
+  //     );
+  //   }
+  //   return 0;
+  // };
 
   useEffect(() => {
     let tl = GSAP.timeline({
       scrollTrigger: {
         trigger: ".landing_section-history",
         markers: true,
-
+        onUpdate: animate,
         pin: true, // pin the trigger element while active
         start: "top top", // when the top of the trigger hits the top of the viewport
-        end: "bottom+=300%", // end after scrolling 500px beyond the start
+        end: "bottom+=600%", // end after scrolling 500px beyond the start
         scrub: true, // smooth scrubbing, takes 1 second to "catch up" to the scrollbar
       },
     });
   }, []);
+
+  const animate = async (status) => {
+    setAnimated(true);
+    animateText(status.progress);
+    if (status.progress > 0.01) {
+      setAnimated(true);
+    } else {
+      setAnimated(false);
+    }
+  };
+  const animateText = async (progress) => {
+    let karaokeText = "";
+    let outerText = "";
+    if (progress < 0.5) {
+      for (let index = 0; index < first_Paragraph_Text.length; index++) {
+        if (index < first_Paragraph_Text.length * progress * 2) {
+          karaokeText += first_Paragraph_Text[index];
+        } else {
+          outerText += first_Paragraph_Text[index];
+        }
+      }
+
+      setFirstParagraphText(
+        <p>
+          <karaoke>{karaokeText}</karaoke>
+          {outerText}
+        </p>
+      );
+      setSecondParagraphText(<p data="margin">{second_Paragraph_Text}</p>);
+    } else {
+      progress -= 0.5;
+      for (let index = 0; index < second_Paragraph_Text.length; index++) {
+        if (index < second_Paragraph_Text.length * progress * 2) {
+          karaokeText += second_Paragraph_Text[index];
+        } else {
+          outerText += second_Paragraph_Text[index];
+        }
+      }
+      setFirstParagraphText(
+        <p>
+          <karaoke>{first_Paragraph_Text}</karaoke>
+        </p>
+      );
+      setSecondParagraphText(
+        <p>
+          <karaoke>{karaokeText}</karaoke>
+          {outerText}
+        </p>
+      );
+    }
+  };
 
   return (
     <section className="landing_section-history">
@@ -99,9 +150,9 @@ export default function History({ GSAP }) {
           {firstParagraphText}
           {secondParagraphText}
         </div>{" "}
-        <ScrollTrigger onEnter={animate}>
-          <Cloud animated={animated}></Cloud>{" "}
-        </ScrollTrigger>
+        <div>
+          <Cloud animated={animated}></Cloud>
+        </div>
       </div>
       <div className="bg_particle"></div>
     </section>
