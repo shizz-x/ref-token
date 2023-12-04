@@ -9,7 +9,7 @@ const first_Paragraph_Text =
   "Этап - создание LAZYcoin для сбора аудитории и формирование комьюнити, покупка LAZY дает возможность доступа к нашим продуктам и возможность стать частью нашей digital-экосистемы. Это сообщесто людей с одинаковыми ценностями и взглядами на жизнь (любовь, доброта, честность, открытость, принципы формирование реальности, осознанность, понимание, что реальность - это отображение наших мыслей и установок).";
 const second_Paragraph_Text =
   "Держатели LAZY смогут заработать на росте его стоимости, обеспеченном ограниченной эмиссией и растущим спросом, поскольку покупка токена открывает доступ к возможностям инвестирования в наши проекты на ранних стадиях (дивиденды 60-120% годовых на эффективных безопасных инструментах digital и нейромаркетинга, подробнее об этих проектах - в дробной карте)";
-export default function History() {
+export default function History({ GSAP }) {
   const [firstParagraphText, setFirstParagraphText] = useState(
     <p>{first_Paragraph_Text}</p>
   );
@@ -66,8 +66,22 @@ export default function History() {
     return 0;
   };
 
+  useEffect(() => {
+    let tl = GSAP.timeline({
+      scrollTrigger: {
+        trigger: ".landing_section-history",
+        markers: true,
+
+        pin: true, // pin the trigger element while active
+        start: "top top", // when the top of the trigger hits the top of the viewport
+        end: "bottom+=5000px", // end after scrolling 500px beyond the start
+        scrub: true, // smooth scrubbing, takes 1 second to "catch up" to the scrollbar
+      },
+    });
+  }, []);
+
   return (
-    <section data-scroll-section className="landing_section-history">
+    <section className="landing_section-history">
       <div
         className={`landing_section-batmanthinking ${
           animated ? "visible" : ""

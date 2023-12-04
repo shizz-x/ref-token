@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import ScrollTrigger from "react-scroll-trigger";
 import comics from "../../../Images/comics.png";
 import comics2 from "../../../Images/comics2.png";
@@ -6,7 +6,7 @@ import fatboyy from "../../../Images/fatboydrinking.svg";
 function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
-export default function Features() {
+export default function Features({ GSAP }) {
   const [animated, setAnimated] = useState(false);
 
   const card1 = useRef();
@@ -29,8 +29,23 @@ export default function Features() {
       await sleep(2000);
     }
   };
+
+  useEffect(() => {
+    let tl = GSAP.timeline({
+      scrollTrigger: {
+        trigger: ".landing_section-features",
+        markers: true,
+
+        pin: true, // pin the trigger element while active
+        start: "top top", // when the top of the trigger hits the top of the viewport
+        end: "bottom+=5000px", // end after scrolling 500px beyond the start
+        scrub: 1, // smooth scrubbing, takes 1 second to "catch up" to the scrollbar
+      },
+    });
+  }, []);
+
   return (
-    <section data-scroll-section className="landing_section-features">
+    <section className="landing_section-features">
       <img
         src={fatboyy}
         className="landing_section-fatboydrinking"

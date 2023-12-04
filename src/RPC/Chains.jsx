@@ -5,8 +5,8 @@ export const eth = {
   name: "Ethereum Mainnet",
 };
 export const sepolia = {
-  node: "https://rpc.ankr.com/eth_sepolia",
-  ws_node: "wss://ethereum-sepolia.publicnode.com",
+  node: "https://ethereum-sepolia.blockpi.network/v1/rpc/public",
+  ws_node: "wss://sepolia.infura.io/ws/v3/ecda260d447d4e82b700669f841543ac",
   id: "0xaa36a7",
   name: "Sepolia testnet",
 };

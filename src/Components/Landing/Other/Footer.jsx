@@ -7,7 +7,7 @@ import medium from "../../../Images/medium.png";
 
 export default function Footer() {
   return (
-    <footer data-scroll-container className="landing_footer">
+    <footer className="landing_footer">
       <div className="landing_footer-content">
         <div className="landing_header-logo">
           <img src={logo} alt="" />

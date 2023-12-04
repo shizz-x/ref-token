@@ -5,16 +5,24 @@ import History from "../Components/Landing/Sections/History";
 import Features from "../Components/Landing/Sections/Features";
 import Roadmap from "../Components/Landing/Sections/Roadmap";
 import Footer from "../Components/Landing/Other/Footer";
-import React, { useEffect } from "react";
+import React from "react";
+import { gsap } from "gsap";
+
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useMemo } from "react";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function Landing() {
+  const GSAP = useMemo(() => gsap, []);
+
   return (
     <main className="App">
       <Header />
-      <Intro />
-      <History />
-      <Features />
-      <Roadmap />
+      <Intro GSAP={GSAP} />
+      <History GSAP={GSAP} />
+      <Features GSAP={GSAP} />
+      <Roadmap GSAP={GSAP} />
       <Footer />
     </main>
   );

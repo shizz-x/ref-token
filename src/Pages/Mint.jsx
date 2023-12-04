@@ -100,10 +100,12 @@ export default function Mint() {
   };
 
   useEffect(() => {
-    getStartedInfo();
-    setInterval(() => {
-      getStartedInfo();
-    }, 10000);
+    // setTimeout(() => {
+    //   getStartedInfo();
+    // }, 3000);
+    // setInterval(() => {
+    //   getStartedInfo();
+    // }, 10000);
   }, []);
   useEffect(() => {
     if (reffererValid(address)) {

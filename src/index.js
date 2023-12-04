@@ -7,6 +7,7 @@ import Wallet from "./Context/Wallet";
 import Mint from "./Pages/Mint";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
+
 root.render(
   <BrowserRouter>
     <Wallet>

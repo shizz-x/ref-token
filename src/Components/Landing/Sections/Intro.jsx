@@ -9,7 +9,7 @@ const first_Paragraph_Text =
   "Наша миссия - поднять средний уровень жизни людей с помощью осознанного инвестирования и базовых принципов финансовой грамотности, а также сформировать комьюнити лидеров мнений с экологичными ценностями, чтобы вывести коллективное сознание людей на новый уровень - уровень изобилия, достатка, счастья, финансовой свободы.";
 const second_Paragraph_Text =
   "Мы призываем отказаться от устарелой парадигмы мира, ограничивающей наши возможности, и от привычки создавать дополнительные трения с реальностью. Высокие результаты в инвестировании эквивалентны не затраченному времени, а эффективности действий (а иногда - бездействия) инвестора.";
-export default function SectionIntro() {
+export default function SectionIntro({ GSAP }) {
   const [animationPending, setAnimationPending] = useState(false);
   const [loaded, setLoaded] = useState(false);
   const [firstParagraphText, setFirstParagraphText] = useState(
@@ -21,10 +21,31 @@ export default function SectionIntro() {
 
   useEffect(() => {
     setTimeout(() => {
-      setLoaded(!loaded);
       setAnimationPending(true);
     }, 1000);
   }, []);
+
+  useEffect(() => {
+    let tl = GSAP.timeline({
+      scrollTrigger: {
+        trigger: ".landing_section-intro",
+        markers: true,
+        onUpdate: animate,
+        pin: true, // pin the trigger element while active
+        start: "top top", // when the top of the trigger hits the top of the viewport
+        end: "bottom+=300%", // end after scrolling 500px beyond the start
+        scrub: true, // smooth scrubbing, takes 1 second to "catch up" to the scrollbar
+      },
+    });
+  }, []);
+
+  const animate = async (status) => {
+    if (status.progress > 0.1) {
+      setLoaded(true);
+    } else {
+      setLoaded(false);
+    }
+  };
 
   useEffect(() => {
     const animate = async () => {
@@ -76,7 +97,7 @@ export default function SectionIntro() {
   }, [animationPending]);
 
   return (
-    <section data-scroll-section className="landing_section-intro">
+    <section className="landing_section-intro">
       <img
         className={`landing_section-fatboyplaying ${
           loaded ? "reveal" : "hidden"

@@ -59,14 +59,6 @@ export default function Wallet({ children }) {
 
     getWalletInfo();
   }
-
-  function checkConnection() {
-    provider
-      .request({ method: "eth_accounts" })
-      .then(handleAccountsChanged)
-      .catch(console.error);
-  }
-
   const connectWallet = () => {
     return provider
       .request({ method: "eth_requestAccounts" })

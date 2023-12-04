@@ -1,10 +1,10 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import ScrollTrigger from "react-scroll-trigger";
 import bigboy from "../../../Images/bigboyabudabi.png";
 function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
-export default function Roadmap() {
+export default function Roadmap({ GSAP }) {
   const [animated, setAnimated] = useState(false);
 
   const card1 = useRef();
@@ -25,9 +25,21 @@ export default function Roadmap() {
       await sleep(2000);
     }
   };
+  useEffect(() => {
+    let tl = GSAP.timeline({
+      scrollTrigger: {
+        trigger: ".landing_section-roadmap",
+        markers: true,
+        pin: true, // pin the trigger element while active
+        start: "top top", // when the top of the trigger hits the top of the viewport
+        end: "bottom+=5000px", // end after scrolling 500px beyond the start
+        scrub: 1, // smooth scrubbing, takes 1 second to "catch up" to the scrollbar
+      },
+    });
+  }, []);
 
   return (
-    <section data-scroll-section className="landing_section-roadmap">
+    <section className="landing_section-roadmap">
       <div className="landing_section-content">
         <span className={`${animated ? "visible" : ""}`}>РОАДМАП</span>
         <h1 className={`${animated ? "visible" : ""}`}>
