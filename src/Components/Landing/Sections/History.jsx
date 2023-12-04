@@ -74,7 +74,7 @@ export default function History({ GSAP }) {
 
         pin: true, // pin the trigger element while active
         start: "top top", // when the top of the trigger hits the top of the viewport
-        end: "bottom+=5000px", // end after scrolling 500px beyond the start
+        end: "bottom+=300%", // end after scrolling 500px beyond the start
         scrub: true, // smooth scrubbing, takes 1 second to "catch up" to the scrollbar
       },
     });

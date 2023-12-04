@@ -20,12 +20,6 @@ export default function SectionIntro({ GSAP }) {
   );
 
   useEffect(() => {
-    setTimeout(() => {
-      setAnimationPending(true);
-    }, 1000);
-  }, []);
-
-  useEffect(() => {
     let tl = GSAP.timeline({
       scrollTrigger: {
         trigger: ".landing_section-intro",
@@ -33,68 +27,66 @@ export default function SectionIntro({ GSAP }) {
         onUpdate: animate,
         pin: true, // pin the trigger element while active
         start: "top top", // when the top of the trigger hits the top of the viewport
-        end: "bottom+=300%", // end after scrolling 500px beyond the start
+        end: "bottom+=900%", // end after scrolling 500px beyond the start
         scrub: true, // smooth scrubbing, takes 1 second to "catch up" to the scrollbar
       },
     });
   }, []);
 
   const animate = async (status) => {
+    animateText(status.progress);
     if (status.progress > 0.1) {
       setLoaded(true);
     } else {
       setLoaded(false);
     }
-  };
-
-  useEffect(() => {
-    const animate = async () => {
-      let resultText = "";
-      let splitedText = first_Paragraph_Text.split(" ");
-
-      for (let i = 0; i < splitedText.length; i++) {
-        resultText += " " + splitedText[i];
-        let notRevealedWord = "";
-        for (let j = 0; j < splitedText.length; j++) {
-          if (j > i) {
-            notRevealedWord += " " + splitedText[j];
-          }
-        }
-        await sleep(100);
-        setFirstParagraphText(
-          <p>
-            <karaoke>{resultText}</karaoke>
-            {notRevealedWord}
-          </p>
-        );
-      }
-
-      resultText = "";
-      splitedText = second_Paragraph_Text.split(" ");
-
-      for (let i = 0; i < splitedText.length; i++) {
-        resultText += " " + splitedText[i];
-        let notRevealedWord = "";
-        for (let j = 0; j < splitedText.length; j++) {
-          if (j > i) {
-            notRevealedWord += " " + splitedText[j];
-          }
-        }
-        await sleep(100);
-        setSecondParagraphText(
-          <p data="margin">
-            <karaoke>{resultText}</karaoke>
-            {notRevealedWord}
-          </p>
-        );
-      }
+    if (status.progress < 0.98) {
+      setAnimationPending(true);
+    } else {
       setAnimationPending(false);
-      return 0;
-    };
-    if (animationPending) {
-      animate();
     }
-  }, [animationPending]);
+  };
+  const animateText = async (progress) => {
+    let karaokeText = "";
+    let outerText = "";
+    if (progress < 0.5) {
+      for (let index = 0; index < first_Paragraph_Text.length; index++) {
+        if (index < first_Paragraph_Text.length * progress * 2) {
+          karaokeText += first_Paragraph_Text[index];
+        } else {
+          outerText += first_Paragraph_Text[index];
+        }
+      }
+
+      setFirstParagraphText(
+        <p>
+          <karaoke>{karaokeText}</karaoke>
+          {outerText}
+        </p>
+      );
+      setSecondParagraphText(<p>{second_Paragraph_Text}</p>);
+    } else {
+      progress -= 0.5;
+      for (let index = 0; index < second_Paragraph_Text.length; index++) {
+        if (index < second_Paragraph_Text.length * progress * 2) {
+          karaokeText += second_Paragraph_Text[index];
+        } else {
+          outerText += second_Paragraph_Text[index];
+        }
+      }
+      setFirstParagraphText(
+        <p>
+          <karaoke>{first_Paragraph_Text}</karaoke>
+        </p>
+      );
+      setSecondParagraphText(
+        <p>
+          <karaoke>{karaokeText}</karaoke>
+          {outerText}
+        </p>
+      );
+    }
+  };
 
   return (
     <section className="landing_section-intro">
