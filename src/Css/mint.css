@@ -9,6 +9,7 @@
 .MINT {
   width: 100vw;
   height: 100vh;
+  color: #050505 !important;
   font-family: "druk", monospace;
   background: linear-gradient(180deg, #131a39, #000c2f);
   background-size: 400% 400%;
@@ -26,27 +27,33 @@
   flex-direction: column;
 }
 .header_connect_content {
-  border: 1px solid rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(0, 0, 0, 0.5);
   border-radius: 100px;
   width: 200px;
+  transition: all 0.5s;
+}
+.header_connect_content:hover {
+  border: 1px solid rgba(0, 0, 0, 1);
 }
 .minting_amount {
   font-size: 10px;
 }
 .header_logo {
   font-size: 30px;
+  width: 100%;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.5);
 }
 .mint_button {
   all: unset;
   margin-top: 1rem;
   padding: 1rem 3rem;
-  border: 1px solid rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(0, 0, 0, 0.5);
   border-radius: 1000px;
   cursor: pointer;
   transition: all 0.5s;
 }
 .mint_button:hover {
-  border: 1px solid rgba(255, 255, 255, 1);
+  border: 1px solid rgba(0, 0, 0, 1);
 }
 .mint_button:disabled {
   opacity: 0.5;
@@ -75,7 +82,7 @@ input:disabled {
 .progres_bar {
   width: 100%;
   height: 10px;
-  background-color: #00e6f6;
+  background-color: #050505;
   border: 1px solid rgba(255, 255, 255, 0.2);
   padding: 2px 2px;
   border-radius: 1000px;
@@ -115,7 +122,7 @@ input:disabled {
 }
 .blur {
   padding: 10rem;
-  background-color: rgba(255, 255, 255, 0.437);
+  background-color: rgba(0, 0, 0, 0.663);
   border-radius: 100px;
   position: absolute;
   width: 400px;
@@ -134,15 +141,15 @@ input:disabled {
   font-size: 10px;
   width: 100%;
   cursor: copy;
+  color: #ff003c;
+  background-color: #050505;
 }
 .mint_wrap {
-  background: linear-gradient(45deg, transparent 5%, #ff003c 5%);
+  background: #ff003c;
   padding: 2rem;
   overflow: hidden;
   z-index: 10;
   width: 400px;
-
-  border-right: #00e6f6 5px solid;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -311,10 +318,10 @@ input:disabled {
   font-family: inherit;
   width: 100%;
   border: 0;
-  border-bottom: 2px solid #9b9b9b;
+  border-bottom: 2px solid #050505;
   outline: 0;
   font-size: 1.3rem;
-  color: #fff;
+  color: #050505;
   padding: 7px 0;
   background: transparent;
   transition: border-color 0.2s;
@@ -333,13 +340,13 @@ input:disabled {
   display: block;
   transition: 0.2s;
   font-size: 1rem;
-  color: #9b9b9b;
+  color: #050505;
 }
 .form__field:focus {
   padding-bottom: 6px;
   font-weight: 700;
   border-width: 3px;
-  border-image: linear-gradient(to right, #11998e, #00e6f6);
+  border-image: linear-gradient(to right, #050505, #ff003c);
   border-image-slice: 1;
 }
 .form__field:focus ~ .form__label {
@@ -348,7 +355,7 @@ input:disabled {
   display: block;
   transition: 0.2s;
   font-size: 1rem;
-  color: #11998e;
+  color: #050505;
   font-weight: 700;
 }
 /* reset input */
@@ -372,11 +379,11 @@ input:disabled {
 
   line-height: 51px;
   font-size: 12px;
-  background: linear-gradient(45deg, transparent 5%, #ff013c 5%);
+  background: #ff013c;
   border: 0;
-  color: #fff;
+  color: #000000;
   letter-spacing: 3px;
-  box-shadow: 6px 0px 0px #00e6f6;
+  box-shadow: 6px 0px 0px #000000;
   outline: transparent;
   position: relative;
   user-select: none;

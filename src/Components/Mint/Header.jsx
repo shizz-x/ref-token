@@ -14,37 +14,33 @@ export default function Header({ MINTPAGESHOWN }) {
     approveTokenSpend,
   } = useContext(WalletContext);
   return (
-    <header>
-      <div className="header_content">
-        <div className="header_logo">
-          {!MINTPAGESHOWN ? "Mint" : "Dashboard"}
-        </div>
-        <div className="header_connect_content">
-          <div
-            className="button connect tooltip"
-            onClick={() => {
-              if (!connected) {
-                connectWallet();
-              } else {
-                disconnect();
-              }
-            }}
+    <div className="header_content">
+      <div className="header_logo">{!MINTPAGESHOWN ? "Mint" : "Dashboard"}</div>
+      <div className="header_connect_content">
+        <div
+          className="button connect tooltip"
+          onClick={() => {
+            if (!connected) {
+              connectWallet();
+            } else {
+              disconnect();
+            }
+          }}
+        >
+          {connected ? address.slice(0, 8) : "Connect"}
+          <span
+            style={{ display: `${connected ? "block" : "none"}` }}
+            className="tooltiptext"
           >
-            {connected ? address.slice(0, 8) : "Connect"}
-            <span
-              style={{ display: `${connected ? "block" : "none"}` }}
-              className="tooltiptext"
-            >
-              <div className="balance">
-                {connected
-                  ? `${web3wss.utils.fromWei(balance, "ether")}`.slice(0, 6) +
-                    " ETH"
-                  : "0ETH"}
-              </div>
-            </span>
-          </div>
+            <div className="balance">
+              {connected
+                ? `${web3wss.utils.fromWei(balance, "ether")}`.slice(0, 6) +
+                  " ETH"
+                : "0ETH"}
+            </div>
+          </span>
         </div>
       </div>
-    </header>
+    </div>
   );
 }
