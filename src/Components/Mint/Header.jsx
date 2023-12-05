@@ -2,7 +2,7 @@ import React from "react";
 import { WalletContext } from "../../Context/Wallet";
 import { useContext } from "react";
 
-export default function Header() {
+export default function Header({ MINTPAGESHOWN }) {
   const {
     address,
     balance,
@@ -16,7 +16,9 @@ export default function Header() {
   return (
     <header>
       <div className="header_content">
-        <div className="header_logo">REF TOKEN</div>
+        <div className="header_logo">
+          {!MINTPAGESHOWN ? "Mint" : "Dashboard"}
+        </div>
         <div className="header_connect_content">
           <div
             className="button connect tooltip"

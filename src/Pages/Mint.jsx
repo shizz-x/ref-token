@@ -242,71 +242,75 @@ export default function Mint() {
         </div>
         {MINTPAGESHOWN ? (
           <div className="mint_wrap">
-            <Header></Header>
-            <TokenName tokenName={mintPageProps.tokenName}></TokenName>
-            <MintedAmount
-              fromWei={web3wss.utils.fromWei}
-              totalSupply={mintPageProps.totalSupply}
-              maxSupply={mintPageProps.maxSupply}
-            ></MintedAmount>
-            <MintPrice
-              tokensPerWei={mintPageProps.tokensPerWei}
-              tokenSymbol={mintPageProps.tokenSymbol}
-            ></MintPrice>
-            <Inputs
-              connected={connected}
-              handleChangeRefferer={handleChangeRefferer}
-              handleChangeMintAmount={handleChangeMintAmount}
-              mintAmount={mintAmount}
-              refferer={refferer}
-              reffererInputAvaliavle={reffererInputAvaliavle}
-            ></Inputs>
-            <button
-              class="mint_button"
-              disabled={!connected || mintAmount <= 0}
-              onClick={mint}
-              role="button"
-            >
-              Mint
-            </button>
-            <MintingAmount
-              fromWei={web3wss.utils.fromWei}
-              toWei={web3wss.utils.toWei}
-              tokensPerWei={mintPageProps.tokensPerWei}
-              tokenSymbol={mintPageProps.tokenSymbol}
-              mintAmount={mintAmount}
-            ></MintingAmount>
-            <div
-              className="refferal_link"
-              style={{ display: `${connected ? "block" : "none"}` }}
-            >
-              <p>your refferal link:</p>
-              <input
-                onClick={handleClick}
-                type="text"
-                value={generateRefferalLink(address)}
-              />
+            <div className="spacer">
+              <Header></Header>
+              <TokenName tokenName={mintPageProps.tokenName}></TokenName>
+              <MintedAmount
+                fromWei={web3wss.utils.fromWei}
+                totalSupply={mintPageProps.totalSupply}
+                maxSupply={mintPageProps.maxSupply}
+              ></MintedAmount>
+              <MintPrice
+                tokensPerWei={mintPageProps.tokensPerWei}
+                tokenSymbol={mintPageProps.tokenSymbol}
+              ></MintPrice>
+              <Inputs
+                connected={connected}
+                handleChangeRefferer={handleChangeRefferer}
+                handleChangeMintAmount={handleChangeMintAmount}
+                mintAmount={mintAmount}
+                refferer={refferer}
+                reffererInputAvaliavle={reffererInputAvaliavle}
+              ></Inputs>
+              <button
+                class="mint_button"
+                disabled={!connected || mintAmount <= 0}
+                onClick={mint}
+                role="button"
+              >
+                Mint
+              </button>
+              <MintingAmount
+                fromWei={web3wss.utils.fromWei}
+                toWei={web3wss.utils.toWei}
+                tokensPerWei={mintPageProps.tokensPerWei}
+                tokenSymbol={mintPageProps.tokenSymbol}
+                mintAmount={mintAmount}
+              ></MintingAmount>
+              <div
+                className="refferal_link"
+                style={{ display: `${connected ? "block" : "none"}` }}
+              >
+                <p>your refferal link:</p>
+                <input
+                  onClick={handleClick}
+                  type="text"
+                  value={generateRefferalLink(address)}
+                />
+              </div>
             </div>
           </div>
         ) : (
           <div className="mint_wrap">
-            <Header></Header>
-            <DashboardInfo
-              fromWei={web3wss.utils.fromWei}
-              userInfo={userInfo}
-              tokenSymbol={mintPageProps.tokenSymbol}
-              contractwss={contractwss}
-              address={address}
-              setCanWithdraw={setCanWithdraw}
-            ></DashboardInfo>
-            <button
-              class="mint_button"
-              disabled={!connected || !canWithdraw}
-              onClick={withdraw}
-              role="button"
-            >
-              Withdraw
-            </button>
+            <div className="spacer">
+              <Header MINTPAGESHOWN></Header>
+              <DashboardInfo
+                fromWei={web3wss.utils.fromWei}
+                userInfo={userInfo}
+                tokenSymbol={mintPageProps.tokenSymbol}
+                contractwss={contractwss}
+                address={address}
+                setCanWithdraw={setCanWithdraw}
+              ></DashboardInfo>
+              <button
+                class="mint_button"
+                disabled={!connected || !canWithdraw}
+                onClick={withdraw}
+                role="button"
+              >
+                Withdraw
+              </button>
+            </div>
           </div>
         )}
       </div>
