@@ -35,12 +35,15 @@ export default function SectionIntro({ GSAP }) {
 
   const animate = async (status) => {
     animateText(status.progress);
+    document.querySelector(".landing_header-nav_links").style.color = "white";
+    document.querySelector(".landing_header-nav_links").style.backgroundColor =
+      "rgba(34, 39, 111, 0.4)";
     if (status.progress > 0.01) {
       setLoaded(true);
     } else {
       setLoaded(false);
     }
-    if (status.progress < 0.98) {
+    if (status.progress > 0.02 && status.progress < 0.98) {
       setAnimationPending(true);
     } else {
       setAnimationPending(false);
@@ -91,15 +94,14 @@ export default function SectionIntro({ GSAP }) {
   return (
     <section className="landing_section-intro">
       <img
-        className={`landing_section-fatboyplaying ${
-          loaded ? "reveal" : "hidden"
-        }`}
+        className={`landing_section-fatboyplaying reveal
+        `}
         src={fatboyplaying}
         alt=""
         srcset=""
       />
       <img
-        className={`landing_section-gifts ${loaded ? "reveal" : "hidden"}`}
+        className={`landing_section-gifts reveal`}
         src={gifts}
         alt=""
         srcset=""
@@ -109,9 +111,9 @@ export default function SectionIntro({ GSAP }) {
         <div className="landing_section-spliter">
           {firstParagraphText}
           <img
-            className={`landing_section-hellophone ${
-              loaded ? "reveal" : "hidden"
-            } ${animationPending ? "shake" : ""}`}
+            className={`landing_section-hellophone reveal ${
+              animationPending ? "shake" : ""
+            }`}
             src={hellophone}
             alt=""
             srcset=""

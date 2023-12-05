@@ -99,11 +99,14 @@ body {
 .landing_header-logo img {
   width: 3rem;
   height: 3rem;
+  background-color: #00000054;
+  border-radius: 100%;
+  padding: 5px;
 }
 .landing_header {
   margin: 1rem 0;
   width: 100%;
-  position: absolute;
+  position: fixed;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -120,6 +123,8 @@ body {
   display: flex;
   gap: 1rem;
   text-align: center;
+  border-radius: 1000px;
+  padding: 0 1rem;
 }
 .landing_header-nav_link {
   display: flex;
@@ -221,7 +226,7 @@ body {
   font-family: "druk", monospace;
   font-weight: 1000;
   font-size: 30px;
-  margin: 10rem 0 0 0;
+  margin: 3rem 0 0 0;
   padding: 0 0 1rem 0;
   border-bottom: solid 5px #000;
   transition: all 1.5s;
@@ -233,6 +238,7 @@ body {
   transform: translateY(-100px);
   opacity: 0;
   transition: all 1.5s;
+  margin: 1rem;
 }
 .landing_section-history_spliter {
   display: flex;
@@ -275,6 +281,7 @@ body {
   position: absolute;
   z-index: 1;
   width: 80%;
+  max-width: 80rem;
 }
 #fart {
   transform: translate(15%, -10%);
@@ -440,7 +447,12 @@ body {
   text-align: justify;
   max-width: 50%;
   width: 40%;
+  color: #e8393967;
 }
+.landing_section-roadmap_spliter p karaoke {
+  color: #e8393a;
+}
+
 .landing_section-roadmap h3 {
   font-family: "druk", monospace;
   margin: 1rem 0 1rem 0;
@@ -698,6 +710,9 @@ body {
   .landing_section-features_spliter .info_card {
     width: 200px;
     height: 50px;
+  }
+  .landing_section-cloud_wrapper {
+    display: none;
   }
   .landing_section-intro h1,
   .landing_section-history h1,

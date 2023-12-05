@@ -18,54 +18,6 @@ export default function History({ GSAP }) {
   );
   const [animated, setAnimated] = useState(false);
 
-  // const animate = async () => {
-  //   if (animated) {
-  //     return 0;
-  //   }
-
-  //   let resultText = "";
-  //   let splitedText = first_Paragraph_Text.split(" ");
-  //   await sleep(1000);
-  //   setAnimated(true);
-  //   for (let i = 0; i < splitedText.length; i++) {
-  //     resultText += " " + splitedText[i];
-  //     let notRevealedWord = "";
-  //     for (let j = 0; j < splitedText.length; j++) {
-  //       if (j > i) {
-  //         notRevealedWord += " " + splitedText[j];
-  //       }
-  //     }
-  //     await sleep(100);
-  //     setFirstParagraphText(
-  //       <p>
-  //         <karaoke>{resultText}</karaoke>
-  //         {notRevealedWord}
-  //       </p>
-  //     );
-  //   }
-
-  //   resultText = "";
-  //   splitedText = second_Paragraph_Text.split(" ");
-
-  //   for (let i = 0; i < splitedText.length; i++) {
-  //     resultText += " " + splitedText[i];
-  //     let notRevealedWord = "";
-  //     for (let j = 0; j < splitedText.length; j++) {
-  //       if (j > i) {
-  //         notRevealedWord += " " + splitedText[j];
-  //       }
-  //     }
-  //     await sleep(100);
-  //     setSecondParagraphText(
-  //       <p data="margin">
-  //         <karaoke>{resultText}</karaoke>
-  //         {notRevealedWord}
-  //       </p>
-  //     );
-  //   }
-  //   return 0;
-  // };
-
   useEffect(() => {
     let tl = GSAP.timeline({
       scrollTrigger: {
@@ -82,6 +34,9 @@ export default function History({ GSAP }) {
 
   const animate = async (status) => {
     setAnimated(true);
+    document.querySelector(".landing_header-nav_links").style.color = "black";
+    document.querySelector(".landing_header-nav_links").style.backgroundColor =
+      "#e8393967";
     animateText(status.progress);
     if (status.progress > 0.01) {
       setAnimated(true);

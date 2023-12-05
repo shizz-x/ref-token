@@ -18,7 +18,9 @@ export default function Features({ GSAP }) {
 
   const animate = async (self) => {
     let cards = [card1, card2, card3, card4, card5, card6];
-
+    document.querySelector(".landing_header-nav_links").style.color = "black";
+    document.querySelector(".landing_header-nav_links").style.backgroundColor =
+      "rgba(255, 255, 255, 0.4)";
     if (self.progress > 0.01) {
       setAnimated(true);
     } else {
