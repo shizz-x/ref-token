@@ -6,9 +6,9 @@ function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 const first_Paragraph_Text =
-  "Наша миссия - поднять средний уровень жизни людей с помощью осознанного инвестирования и базовых принципов финансовой грамотности, а также сформировать комьюнити лидеров мнений с экологичными ценностями, чтобы вывести коллективное сознание людей на новый уровень - уровень изобилия, достатка, счастья, финансовой свободы.";
+  "Our mission is to enhance the average standard of living through smart investing and fundamental financial education. We aim to build a community of opinion leaders who share eco-friendly values. Our goal is to elevate collective consciousness to a new level - one of abundance, prosperity, happiness, and financial freedom.";
 const second_Paragraph_Text =
-  "Мы призываем отказаться от устарелой парадигмы мира, ограничивающей наши возможности, и от привычки создавать дополнительные трения с реальностью. Высокие результаты в инвестировании эквивалентны не затраченному времени, а эффективности действий (а иногда - бездействия) инвестора.";
+  "We advocate for moving beyond outdated worldviews that limit our potential, and for abandoning habits that create unnecessary friction with reality. In investing, high results are not just about the time invested, but the efficiency of the investor's actions, and sometimes, their inaction.";
 export default function SectionIntro({ GSAP }) {
   const [animationPending, setAnimationPending] = useState(false);
   const [loaded, setLoaded] = useState(false);

@@ -1,14 +1,11 @@
 import React, { useEffect, useState } from "react";
 import batman from "../../../Images/batmansthinking.svg";
-import ScrollTrigger from "react-scroll-trigger";
 import Cloud from "../Other/Cloud";
-function sleep(ms) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
-}
+const defaultprog = 0.0001;
 const first_Paragraph_Text =
-  "Этап - создание LAZYcoin для сбора аудитории и формирование комьюнити, покупка LAZY дает возможность доступа к нашим продуктам и возможность стать частью нашей digital-экосистемы. Это сообщесто людей с одинаковыми ценностями и взглядами на жизнь (любовь, доброта, честность, открытость, принципы формирование реальности, осознанность, понимание, что реальность - это отображение наших мыслей и установок).";
+  "The initial stage involves creating LAZYcoin to attract an audience and form a community. Acquiring LAZYcoin provides access to our products and the chance to be part of our digital ecosystem. This community unites people who share similar values and perspectives on life - love, kindness, honesty, openness, and the principles of shaping reality and consciousness. It recognizes that our reality reflects our thoughts and beliefs.";
 const second_Paragraph_Text =
-  "Держатели LAZY смогут заработать на росте его стоимости, обеспеченном ограниченной эмиссией и растущим спросом, поскольку покупка токена открывает доступ к возможностям инвестирования в наши проекты на ранних стадиях (дивиденды 60-120% годовых на эффективных безопасных инструментах digital и нейромаркетинга, подробнее об этих проектах - в дробной карте)";
+  "Holders of LAZYcoin will have the opportunity to profit from its value increase, supported by limited issuance and growing demand. Purchasing the token grants access to early-stage investment opportunities in our projects. These projects offer dividends of 60-120% annually, utilizing effective and safe digital and neuromarketing tools. More details about these projects can be found in our roadmap.";
 export default function History({ GSAP }) {
   const [firstParagraphText, setFirstParagraphText] = useState(
     <p>{first_Paragraph_Text}</p>
@@ -16,6 +13,7 @@ export default function History({ GSAP }) {
   const [secondParagraphText, setSecondParagraphText] = useState(
     <p>{second_Paragraph_Text}</p>
   );
+  const [progresCloud, setProgressCloud] = useState(defaultprog);
   const [animated, setAnimated] = useState(false);
 
   useEffect(() => {
@@ -34,6 +32,7 @@ export default function History({ GSAP }) {
 
   const animate = async (status) => {
     setAnimated(true);
+    setProgressCloud(status.progress);
     document.querySelector(".landing_header-nav_links").style.color = "black";
     document.querySelector(".landing_header-nav_links").style.backgroundColor =
       "#e8393967";
@@ -97,7 +96,7 @@ export default function History({ GSAP }) {
       </div>
 
       <div className="landing_section-content">
-        <span className={`${animated ? "visible" : ""}`}>ИСТРИЯ</span>
+        <span className={`${animated ? "visible" : ""}`}>ABOUT</span>
         <h1 className={`${animated ? "visible" : ""}`}>
           Getting rich with lazy
         </h1>
@@ -106,7 +105,7 @@ export default function History({ GSAP }) {
           {secondParagraphText}
         </div>{" "}
         <div>
-          <Cloud animated={animated}></Cloud>
+          <Cloud progresCloud={progresCloud}></Cloud>
         </div>
       </div>
       <div className="bg_particle"></div>

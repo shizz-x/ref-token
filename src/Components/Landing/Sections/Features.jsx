@@ -83,9 +83,6 @@ export default function Features({ GSAP }) {
         srcset=""
       />
       <div className="landing_section-content">
-        <span className={`${animated ? "visible" : ""}`}>
-          НАШИ ПРЕИМУЩЕСТВА
-        </span>
         <h1 className={`${animated ? "visible" : ""}`}>LAZY COIN</h1>
         <div className="landing_section-features_spliter">
           <div className="info_card CARD1" ref={card1} id="CARD1">

@@ -5,9 +5,9 @@ function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 const first_Paragraph_Text =
-  "Мы понимаем, что без базового закрытия финансовых потребностей человека трудно говорить о личностном росте и саморазвитии, поэтому мы даем возможность изначально с нами заработать базовый капитал и научим, как его эффективность использовать - какими методами, на каких площадках, с помощью какие инструментов, а когда мы освободим ваши головы от задачи «заработать себе на жизнь», - тогда уже поговорим о высоком.";
+  "We understand that meeting basic financial needs is a prerequisite for discussing personal growth and self-development. Therefore, we offer the opportunity to first earn basic capital with us. We also provide guidance on how to effectively use this capital, including which methods to employ, platforms to use, and tools to leverage. Once the concern of 'earning a living' is alleviated, we can then delve into higher matters.";
 const second_Paragraph_Text =
-  "Каждый держатель токена фактически станет акционером нашей компании и будет получать деведенды (+рост стоимости своих активов) Миссия нашей экосистемы в повышении качества жизни холдеров через проработку мышления и установок, рост осознанности, обучение инвестициям и криптовалюте, бизнес и финансовое образование. Дисциплина тела, ума, сознания - это осознанный выбор в сторону ежедневного роста и развития";
+  "Each token holder will effectively become a shareholder in our company and will receive dividends, in addition to growth in the value of their assets. The mission of our ecosystem is to improve the quality of life of the holders by refining their thinking and beliefs, increasing awareness, and teaching about investments and cryptocurrency, as well as business and financial education. The discipline of body, mind, and consciousness represents a conscious choice towards daily growth and development.";
 
 export default function Roadmap({ GSAP }) {
   const [animated, setAnimated] = useState(false);

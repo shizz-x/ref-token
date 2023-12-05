@@ -1,13 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import frames from "../../../Images/cloud/CloudFrames";
-function sleep(ms) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
-}
-function getRandomArbitrary(min, max) {
-  return Math.random() * (max - min) + min;
-}
+
 export default function Cloud(props) {
-  const [animated, setAnimated] = useState(false);
   const [firstThinkLineShow, setFirstThinkLineShow] = useState(false);
   const [secondThinkLineShow, setsecondThinkLineShow] = useState(false);
   const [thirdThinkLineShow, setthirdThinkLineShow] = useState(false);
@@ -20,50 +14,65 @@ export default function Cloud(props) {
   const otherElements = useRef();
 
   useEffect(() => {
-    const animate = async () => {
-      await sleep(2000);
+    const animate = async (status) => {
+      console.log(props.progresCloud);
+      if (status > 0.1) {
+        firstFart.current.classList.remove("hidden");
+      } else {
+        firstFart.current.classList.add("hidden");
+      }
+      if (status > 0.2) {
+        secondFart.current.classList.remove("hidden");
+      } else {
+        secondFart.current.classList.add("hidden");
+      }
+      if (status > 0.3) {
+        thirdFart.current.classList.remove("hidden");
+      } else {
+        thirdFart.current.classList.add("hidden");
+      }
+      if (status > 0.4) {
+        otherElements.current.classList.remove("hidden");
+      } else {
+        otherElements.current.classList.add("hidden");
+      }
+      if (status > 0.5) {
+        setFirstThinkLineShow(true);
+      } else {
+        setFirstThinkLineShow(false);
+      }
+      if (status > 0.6) {
+        setsecondThinkLineShow(true);
+      } else {
+        setsecondThinkLineShow(false);
+      }
+      if (status > 0.7) {
+        setsecondThinkLineShow(true);
+      } else {
+        setsecondThinkLineShow(false);
+      }
+      if (status > 0.8) {
+        setthirdThinkLineShow(true);
+      } else {
+        setthirdThinkLineShow(false);
+      }
 
-      firstFart.current.classList.remove("hidden");
+      if (status > 0.9) {
+        setfourthThinkLineShow(true);
+      } else {
+        setfourthThinkLineShow(false);
+      }
+      if (status > 0.98) {
+        setotherThinkShow(true);
+      } else {
+        setotherThinkShow(false);
+      }
 
-      await sleep(1000);
-
-      secondFart.current.classList.remove("hidden");
-
-      await sleep(1000);
-
-      thirdFart.current.classList.remove("hidden");
-
-      await sleep(1000);
-
-      otherElements.current.classList.remove("hidden");
-
-      await sleep(1000);
-
-      setFirstThinkLineShow(true);
-
-      await sleep(getRandomArbitrary(1000, 2000));
-
-      setsecondThinkLineShow(true);
-
-      await sleep(getRandomArbitrary(1000, 2000));
-
-      setthirdThinkLineShow(true);
-
-      await sleep(getRandomArbitrary(1000, 2000));
-
-      setfourthThinkLineShow(true);
-
-      await sleep(getRandomArbitrary(1000, 2000));
-
-      setotherThinkShow(true);
-
-      setAnimated(true);
       return 0;
     };
-    if (props.animated && !animated) {
-      animate();
-    }
-  }, [props.animated]);
+
+    animate(props.progresCloud);
+  }, [props.progresCloud]);
 
   return (
     <div className="landing_section-cloud_wrapper">
