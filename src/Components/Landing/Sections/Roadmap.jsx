@@ -102,7 +102,7 @@ export default function Roadmap({ GSAP }) {
     let tl = GSAP.timeline({
       scrollTrigger: {
         trigger: ".landing_section-roadmap",
-        markers: true,
+
         onUpdate: animate,
 
         pin: true, // pin the trigger element while active

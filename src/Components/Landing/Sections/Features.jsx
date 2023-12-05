@@ -62,7 +62,7 @@ export default function Features({ GSAP }) {
     let tl = GSAP.timeline({
       scrollTrigger: {
         trigger: ".landing_section-features",
-        markers: true,
+
         onUpdate: animate,
         pin: true, // pin the trigger element while active
         start: "top top", // when the top of the trigger hits the top of the viewport
