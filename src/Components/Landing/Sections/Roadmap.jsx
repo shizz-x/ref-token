@@ -116,7 +116,7 @@ export default function Roadmap({ GSAP }) {
   return (
     <section className="landing_section-roadmap">
       <div className="landing_section-content">
-        <span className={`${animated ? "visible" : ""}`}>РОАДМАП</span>
+        <span className={`${animated ? "visible" : ""}`}>ROADMAP</span>
         <h1 className={`${animated ? "visible" : ""}`}>
           LAZY COIN the ultimate platform
         </h1>
@@ -126,7 +126,7 @@ export default function Roadmap({ GSAP }) {
           {secondParagraphText}
         </div>
 
-        <h3>ПО ИТОГУ ВЫ ПОЛУЧАЕТЕ:</h3>
+        <h3>As a result, you will receive:</h3>
         <div className="landing_section-roadmap_images">
           <img
             src={bigboy}
@@ -136,19 +136,19 @@ export default function Roadmap({ GSAP }) {
           />
           <div className="info_card CARD7" ref={card1} id="CARD7">
             <h2>1</h2>
-            <div>ДОХОД И ДИВЕДЕНДЫ</div>
+            <div>Income and dividends.</div>
           </div>
           <div className="info_card CARD8" ref={card2} id="CARD8">
             <h2>2</h2>
-            <div>ФИНАНСОВУЮ СВОБОДУ</div>
+            <div>Financial freedom.</div>
           </div>
           <div className="info_card CARD9" ref={card3} id="CARD9">
             <h2>3</h2>
-            <div>ДОХОД И ДИВЕДЕНДЫ</div>
+            <div>A conscious approach to life and financial literacy.</div>
           </div>
           <div className="info_card CARD10" ref={card4} id="CARD10">
             <h2>4</h2>
-            <div>ДОХОД И ДИВЕДЕНДЫ</div>
+            <div>A safe environment for first steps in investing.</div>
           </div>
         </div>
       </div>

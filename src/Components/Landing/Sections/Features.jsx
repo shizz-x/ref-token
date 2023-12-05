@@ -83,46 +83,44 @@ export default function Features({ GSAP }) {
         srcset=""
       />
       <div className="landing_section-content">
+        <span className={`${animated ? "visible" : ""}`}>Our Projects</span>
         <h1 className={`${animated ? "visible" : ""}`}>LAZY COIN</h1>
         <div className="landing_section-features_spliter">
           <div className="info_card CARD1" ref={card1} id="CARD1">
             <h2>1</h2>
-            <div>
-              Агентство digital-маркетинга на базе искусственного интеллекта{" "}
-              <b>(контент, который мы монетизируем в трафик)</b>
-            </div>
+            <div>Trading based on artificial intelligence.</div>
           </div>
           <div className="info_card CARD2" ref={card2} id="CARD2">
             <h2>2</h2>
-            <div>
-              Арбитражный бот ведет автоматическую арбитражную торговлю на топ
-              200 монет
-            </div>
+            <div>Creation and automation of sales departments based on AI.</div>
           </div>
           <div className="info_card CARD3" ref={card3} id="CARD3">
             <h2>3</h2>
-            <div>Трейдинг на базе искусственного интеллекта</div>
+            <div>
+              A digital marketing agency based on artificial intelligence{" "}
+              <b>(content that we monetize into traffic)</b>.
+            </div>
           </div>
           <div className="info_card CARD4" ref={card4} id="CARD4">
             <h2>4</h2>
             <div>
-              Приложение по повышению личной эффективности, уникальность
-              которого в коллективном методе и взаимодействии внутри комьюнити
+              An arbitrage bot that conducts automatic arbitrage trading on the
+              top 200 coins.
             </div>
           </div>
           <div className="info_card CARD5" ref={card5} id="CARD5">
             <h2>5</h2>
             <div>
-              Создание метовселенных на базе приложения с интеграцией уникальных
-              аватаров пользователей, брендов одежды и аксессуаров, ресторанов,
-              всей социальной жизни человека
+              An app for increasing personal efficiency, unique for its
+              collective method and community interaction.
             </div>
           </div>
           <div className="info_card CARD6" ref={card6} id="CARD6">
             <h2>6</h2>
             <div>
-              Игровая платформа по покеру, шахматам (платформа взимает комиссию,
-              комиссия распределятся между держателями коина)
+              Creating metaverses based on the app with integration of unique
+              user avatars, clothing brands, accessories, restaurants, and
+              encompassing all aspects of a person's social life.
             </div>
           </div>
 
