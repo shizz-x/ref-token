@@ -7,10 +7,7 @@ function MintPrice(mintPageProps) {
         mintPageProps.tokenSymbol !== undefined ? "" : "undefined"
       }`}
     >
-      <p>
-        mint price: 1{mintPageProps.tokenSymbol} ={" "}
-        {1 / parseInt(mintPageProps.tokensPerWei)}ETH
-      </p>
+      <p>mint price: {1 / parseInt(mintPageProps.tokensPerWei)}ETH</p>
     </div>
   );
 }

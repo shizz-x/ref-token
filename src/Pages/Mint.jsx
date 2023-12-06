@@ -55,9 +55,14 @@ export default function Mint() {
   };
   const handleChangeMintAmount = (event) => {
     event.preventDefault();
-    if (parseFloat(event.target.value) >= 0) {
+    if (
+      parseFloat(event.target.value) >= 0 &&
+      parseFloat(event.target.value) < 3000000000 &&
+      parseFloat(event.target.value) >= 0.0001 &&
+      event.target.value.length < 15
+    ) {
       console.log(event.target.value);
-      setMintAmount(parseFloat(event.target.value));
+      setMintAmount(event.target.value);
     }
     if (event.target.value === "") {
       setMintAmount(0);
@@ -141,6 +146,8 @@ export default function Mint() {
   const withdraw = async () => {
     if (canWithdraw) {
       const gasPrice = await web3wss.eth.getGasPrice();
+
+      console.log(gasPrice);
       const gasLimit = await contractWithProvider.methods
         .withdraw()
         .estimateGas({
