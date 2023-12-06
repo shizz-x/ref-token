@@ -23,6 +23,9 @@ export default function Roadmap({ GSAP }) {
   const card2 = useRef();
   const card3 = useRef();
   const card4 = useRef();
+  const card5 = useRef();
+  const card6 = useRef();
+  const card7 = useRef();
 
   const animateText = async (progress) => {
     let karaokeText = "";
@@ -67,7 +70,7 @@ export default function Roadmap({ GSAP }) {
   };
   const animate = async (self) => {
     animateText(self.progress);
-    let cards = [card1, card2, card3, card4];
+    let cards = [card1, card2, card3, card4, card5, card6, card7];
     document.querySelector(".landing_header-nav_links").style.color = "#e8393a";
     document.querySelector(".landing_header-nav_links").style.backgroundColor =
       "rgba(34, 39, 111, 0.4)";
@@ -92,10 +95,26 @@ export default function Roadmap({ GSAP }) {
     } else {
       cards[2].current.classList.remove("visible");
     }
-    if (self.progress >= 0.9) {
+    if (self.progress >= (1 / cards.length) * 4) {
       cards[3].current.classList.add("visible");
     } else {
       cards[3].current.classList.remove("visible");
+    }
+    if (self.progress >= (1 / cards.length) * 5) {
+      cards[4].current.classList.add("visible");
+    } else {
+      cards[4].current.classList.remove("visible");
+    }
+    if (self.progress >= (1 / cards.length) * 6) {
+      cards[5].current.classList.add("visible");
+    } else {
+      cards[5].current.classList.remove("visible");
+    }
+    if (self.progress >= (1 / cards.length) * 7) {
+      cards[6].current.classList.add("visible");
+      cards[3].current.classList.remove("visible");
+    } else {
+      cards[6].current.classList.remove("visible");
     }
   };
   useEffect(() => {
@@ -149,6 +168,23 @@ export default function Roadmap({ GSAP }) {
           <div className="info_card CARD10" ref={card4} id="CARD10">
             <h2>4</h2>
             <div>A safe environment for first steps in investing.</div>
+          </div>
+          <div className="info_card CARD7" ref={card5} id="CARD10">
+            <h2>5</h2>
+            <div>Understanding of current investment tools and methods.</div>
+          </div>
+          <div className="info_card CARD8" ref={card6} id="CARD10">
+            <h2>6</h2>
+            <div>
+              Working through limiting beliefs and integrating mindsets of
+              abundance and prosperity.
+            </div>
+          </div>
+          <div className="info_card CARD9" ref={card7} id="CARD10">
+            <h2>7</h2>
+            <div>
+              Self-expression within a community of like-minded individuals.
+            </div>
           </div>
         </div>
       </div>

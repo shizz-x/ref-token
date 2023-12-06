@@ -15,7 +15,6 @@ export default function Cloud(props) {
 
   useEffect(() => {
     const animate = async (status) => {
-      console.log(props.progresCloud);
       if (status > 0.1) {
         firstFart.current.classList.remove("hidden");
       } else {

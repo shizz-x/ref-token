@@ -16,8 +16,30 @@ export default function Features({ GSAP }) {
   const card5 = useRef();
   const card6 = useRef();
 
+  const card1additional = useRef();
+  const card2additional = useRef();
+  const card3additional = useRef();
+  const card4additional = useRef();
+  const card5additional = useRef();
+  const card6additional = useRef();
+  const card7additional = useRef();
+
   const animate = async (self) => {
-    let cards = [card1, card2, card3, card4, card5, card6];
+    let cards = [
+      card1,
+      card2,
+      card3,
+      card4,
+      card5,
+      card6,
+      card1additional,
+      card2additional,
+      card3additional,
+      card4additional,
+      card5additional,
+      card6additional,
+      card7additional,
+    ];
     document.querySelector(".landing_header-nav_links").style.color = "black";
     document.querySelector(".landing_header-nav_links").style.backgroundColor =
       "rgba(255, 255, 255, 0.4)";
@@ -51,10 +73,45 @@ export default function Features({ GSAP }) {
     } else {
       cards[4].current.classList.remove("visible");
     }
-    if (self.progress >= 0.9) {
+    if (self.progress > (1 / cards.length) * 6) {
       cards[5].current.classList.add("visible");
     } else {
       cards[5].current.classList.remove("visible");
+    }
+    if (self.progress > (1 / cards.length) * 7) {
+      cards[6].current.classList.add("visible");
+    } else {
+      cards[6].current.classList.remove("visible");
+    }
+    if (self.progress > (1 / cards.length) * 8) {
+      cards[7].current.classList.add("visible");
+    } else {
+      cards[7].current.classList.remove("visible");
+    }
+    if (self.progress > (1 / cards.length) * 9) {
+      cards[8].current.classList.add("visible");
+    } else {
+      cards[8].current.classList.remove("visible");
+    }
+    if (self.progress > (1 / cards.length) * 10) {
+      cards[9].current.classList.add("visible");
+    } else {
+      cards[9].current.classList.remove("visible");
+    }
+    if (self.progress > (1 / cards.length) * 11) {
+      cards[10].current.classList.add("visible");
+    } else {
+      cards[10].current.classList.remove("visible");
+    }
+    if (self.progress > (1 / cards.length) * 12) {
+      cards[11].current.classList.add("visible");
+    } else {
+      cards[11].current.classList.remove("visible");
+    }
+    if (self.progress >= (1 / cards.length) * 13) {
+      cards[12].current.classList.add("visible");
+    } else {
+      cards[12].current.classList.remove("visible");
     }
   };
 
@@ -123,7 +180,51 @@ export default function Features({ GSAP }) {
               encompassing all aspects of a person's social life.
             </div>
           </div>
-
+          <div className="info_card CARD1" ref={card1additional} id="CARD1">
+            <h2>7</h2>
+            <div>
+              {" "}
+              A gaming platform for poker and chess (the platform charges a
+              commission, which is distributed among coin holders).
+            </div>
+          </div>
+          <div className="info_card CARD2" ref={card2additional} id="CARD2">
+            <h2>8</h2>
+            <div>
+              An educational platform for chess and poker (teaching these games
+              provides the strategic thinking, emotional control, and empathy
+              development necessary for a good investor).
+            </div>
+          </div>
+          <div className="info_card CARD3" ref={card3additional} id="CARD3">
+            <h2>9</h2>
+            <div>
+              A network of web3 games (the platform charges a commission, which
+              is distributed among coin holders).
+            </div>
+          </div>
+          <div className="info_card CARD4" ref={card4additional} id="CARD4">
+            <h2>10</h2>
+            <div>Creation of a social network based on our metaverse.</div>
+          </div>
+          <div className="info_card CARD5" ref={card5additional} id="CARD5">
+            <h2>11</h2>
+            <div>
+              Tracking effective wallets, analyzing, and replicating their
+              transactions.
+            </div>
+          </div>
+          <div className="info_card CARD6" ref={card6additional} id="CARD6">
+            <h2>12</h2>
+            <div>Banking crypto-fiat processing.</div>
+          </div>
+          <div className="info_card CARD1" ref={card7additional} id="CARD1">
+            <h2>13</h2>
+            <div>
+              Top leaders will gain access to vote on the board of directors and
+              participate in further project development.
+            </div>
+          </div>
           <img src={comics} alt="" srcset="" />
           <img src={comics2} alt="" srcset="" />
         </div>
