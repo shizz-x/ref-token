@@ -51,14 +51,26 @@ export default function Mint() {
     SETMINTPAGESHOWN(state);
   };
   const handleChangeRefferer = (event) => {
-    event.preventDefault();
-
     setRefferer(event.target.value);
   };
   const handleChangeMintAmount = (event) => {
     event.preventDefault();
-    setMintAmount(event.target.value);
+    if (parseFloat(event.target.value) >= 0) {
+      console.log(event.target.value);
+      setMintAmount(parseFloat(event.target.value));
+    }
+    if (event.target.value === "") {
+      setMintAmount(0);
+    }
   };
+  useEffect(() => {
+    setInterval(() => {
+      document.title = "Mint pending!";
+      setTimeout(() => {
+        document.title = "Lazy coin";
+      }, 3000);
+    }, 6000);
+  }, []);
 
   const getStartedInfo = async () => {
     let decimals = await contractwss.methods.decimals().call();

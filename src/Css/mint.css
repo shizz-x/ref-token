@@ -129,6 +129,13 @@ input:disabled {
   height: 400px;
   filter: blur(200px);
 }
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
 .refferal_link {
   display: flex;
   justify-content: center;

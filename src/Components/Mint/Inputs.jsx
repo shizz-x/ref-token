@@ -15,7 +15,7 @@ function Inputs(props) {
           onChange={props.handleChangeRefferer}
         />
         <label htmlFor="Refferer" className="form__label">
-          Refferer
+          Refferer address
         </label>
       </div>
       <div className="form__group field">
@@ -25,7 +25,7 @@ function Inputs(props) {
           disabled={!props.connected}
           name="Amount"
           type="number"
-          value={props.amount}
+          value={props.mintAmount}
           id="Amount"
           onChange={props.handleChangeMintAmount}
         />
