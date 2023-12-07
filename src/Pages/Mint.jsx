@@ -10,6 +10,7 @@ import MintingAmount from "../Components/Mint/MintingAmount";
 import Header from "../Components/Mint/Header";
 import Inputs from "../Components/Mint/Inputs";
 import DashboardInfo from "../Components/Mint/DashboardInfo";
+import { useRef } from "react";
 
 function generateRefferalLink(address) {
   const urlObj = new URL(window.location.href);
@@ -31,7 +32,6 @@ const handleClick = (e) => {
 };
 export default function Mint() {
   const {
-    connectWallet,
     connected,
     address,
     web3wss,
@@ -47,6 +47,19 @@ export default function Mint() {
   const [MINTPAGESHOWN, SETMINTPAGESHOWN] = useState(true);
   const [userInfo, setUserInfo] = useState(undefined);
   const [canWithdraw, setCanWithdraw] = useState(false);
+  const [awaiting, setAwating] = useState(false);
+  const [popupText, setPopupText] = useState("");
+
+  const popup = useRef();
+
+  const message = async (prefix, text, ms) => {
+    popup.current.classList.add("show");
+    setPopupText(prefix + ": " + text);
+    setTimeout(async () => {
+      popup.current.classList.remove("show");
+    }, ms);
+  };
+
   const handleChangePage = (state) => {
     SETMINTPAGESHOWN(state);
   };
@@ -61,7 +74,6 @@ export default function Mint() {
       parseFloat(event.target.value) >= 0.0001 &&
       event.target.value.length < 15
     ) {
-      console.log(event.target.value);
       setMintAmount(event.target.value);
     }
     if (event.target.value === "") {
@@ -106,7 +118,6 @@ export default function Mint() {
 
   const getUserInfo = async () => {
     let userInfo = await contractwss.methods.getUserRefferer(address).call();
-    console.log(userInfo);
     setUserInfo(userInfo);
   };
 
@@ -132,7 +143,6 @@ export default function Mint() {
   }, [address]);
 
   function reffererValid(refferer) {
-    console.log(refferer);
     if (!refferer) {
       return false;
     }
@@ -145,23 +155,33 @@ export default function Mint() {
   }
   const withdraw = async () => {
     if (canWithdraw) {
-      const gasPrice = await web3wss.eth.getGasPrice();
+      try {
+        const gasPrice = (await web3wss.eth.getGasPrice()) + 300768770n;
 
-      console.log(gasPrice);
-      const gasLimit = await contractWithProvider.methods
-        .withdraw()
-        .estimateGas({
+        const gasLimit =
+          (await contractWithProvider.methods.withdraw().estimateGas({
+            from: address,
+          })) + 15000n;
+        const trx = await contractWithProvider.methods.withdraw().send({
           from: address,
+          gasPrice: gasPrice,
+          gasLimit: gasLimit,
         });
-      const trx = await contractWithProvider.methods.withdraw().send({
-        from: address,
-        gasPrice: gasPrice,
-        gasLimit: gasLimit,
-      });
+        message(
+          "succes",
+          `Withdraw succes, hash: ${trx.transactionHash}`,
+          5000
+        );
+      } catch (error) {
+        message("error", error, 5000);
+      }
+    } else {
+      message("warning", "you are not eligible", 5000);
     }
   };
 
   const mint = async () => {
+    setAwating(true);
     if (
       mintAmount > 0 &&
       connected &&
@@ -170,75 +190,99 @@ export default function Mint() {
           mintPageProps.tokensPerWei
     ) {
       if (!reffererValid(refferer)) {
-        const gasPrice = await web3wss.eth.getGasPrice();
-        const gasLimit = await contractWithProvider.methods
-          .mintWithRefferer(
-            NULL_REFFERER_ADDRESS,
-            BigInt(web3wss.utils.toWei(mintAmount, "ether"))
-          )
-          .estimateGas({
-            from: address,
-            value:
-              BigInt(web3wss.utils.toWei(mintAmount, "ether")) /
-              mintPageProps.tokensPerWei,
-          });
+        try {
+          const gasPrice = (await web3wss.eth.getGasPrice()) + 300768770n;
+          const gasLimit =
+            (await contractWithProvider.methods
+              .mintWithRefferer(
+                NULL_REFFERER_ADDRESS,
+                BigInt(web3wss.utils.toWei(mintAmount, "ether"))
+              )
+              .estimateGas({
+                from: address,
+                value:
+                  BigInt(web3wss.utils.toWei(mintAmount, "ether")) /
+                  mintPageProps.tokensPerWei,
+              })) + 10000n;
 
-        const trx = await contractWithProvider.methods
-          .mintWithRefferer(
-            NULL_REFFERER_ADDRESS,
-            BigInt(web3wss.utils.toWei(mintAmount, "ether"))
-          )
-          .send({
-            from: address,
-            value:
-              BigInt(web3wss.utils.toWei(mintAmount, "ether")) /
-              mintPageProps.tokensPerWei,
-            gasLimit: gasLimit,
-            gasPrice: gasPrice,
-          });
+          const trx = await contractWithProvider.methods
+            .mintWithRefferer(
+              NULL_REFFERER_ADDRESS,
+              BigInt(web3wss.utils.toWei(mintAmount, "ether"))
+            )
+            .send({
+              from: address,
+              value:
+                BigInt(web3wss.utils.toWei(mintAmount, "ether")) /
+                mintPageProps.tokensPerWei,
+              gasLimit: gasLimit,
+              gasPrice: gasPrice,
+            });
 
-        getStartedInfo();
+          message(
+            "succes",
+            `Minted ${mintAmount}, hash: ${trx.transactionHash}`,
+            5000
+          );
+
+          getStartedInfo();
+        } catch (error) {
+          message("error", error.message, 5000);
+        }
       } else {
-        if (refferer == address) {
+        if (refferer.toLocaleLowerCase() == address) {
+          message("error", "dont abuse, please", 2000);
           setRefferer("");
           setReffererInputAvaliavle(true);
+
           return 1;
         }
-        const gasPrice = await web3wss.eth.getGasPrice();
-        const gasLimit = await contractWithProvider.methods
-          .mintWithRefferer(
-            refferer,
-            BigInt(web3wss.utils.toWei(mintAmount, "ether"))
-          )
-          .estimateGas({
-            from: address,
-            value:
-              BigInt(web3wss.utils.toWei(mintAmount, "ether")) /
-              mintPageProps.tokensPerWei,
-          });
+        try {
+          const gasPrice = (await web3wss.eth.getGasPrice()) + 300768770n;
+          const gasLimit =
+            (await contractWithProvider.methods
+              .mintWithRefferer(
+                refferer,
+                BigInt(web3wss.utils.toWei(mintAmount, "ether"))
+              )
+              .estimateGas({
+                from: address,
+                value:
+                  BigInt(web3wss.utils.toWei(mintAmount, "ether")) /
+                  mintPageProps.tokensPerWei,
+              })) + 10000n;
 
-        const trx = await contractWithProvider.methods
-          .mintWithRefferer(
-            refferer,
-            BigInt(web3wss.utils.toWei(mintAmount, "ether"))
-          )
-          .send({
-            from: address,
-            value:
-              BigInt(web3wss.utils.toWei(mintAmount, "ether")) /
-              mintPageProps.tokensPerWei,
-            gasLimit: gasLimit,
-            gasPrice: gasPrice,
-          });
+          const trx = await contractWithProvider.methods
+            .mintWithRefferer(
+              refferer,
+              BigInt(web3wss.utils.toWei(mintAmount, "ether"))
+            )
+            .send({
+              from: address,
+              value:
+                BigInt(web3wss.utils.toWei(mintAmount, "ether")) /
+                mintPageProps.tokensPerWei,
+              gasLimit: gasLimit,
+              gasPrice: gasPrice,
+            });
+          message(
+            "succes",
+            `Minted ${mintAmount}, hash: ${trx.transactionHash}`,
+            5000
+          );
 
-        getStartedInfo();
+          getStartedInfo();
+        } catch (error) {
+          message("error", error, 3000);
+        }
       }
+      setAwating(false);
     } else {
-      alert(123);
+      message("warning", "Not allowed", 3000);
     }
   };
   return (
-    <main className="MINT">
+    <main className={`MINT ${awaiting ? "await" : ""}`}>
       <div className="mint_content">
         <div className="blur"></div>
         <div className="switch_buttons">
@@ -328,6 +372,9 @@ export default function Mint() {
             </button>
           </div>
         )}
+      </div>
+      <div className="popup" ref={popup}>
+        {popupText}
       </div>
     </main>
   );

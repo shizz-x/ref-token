@@ -7,23 +7,23 @@ import Roadmap from "../Components/Landing/Sections/Roadmap";
 import Footer from "../Components/Landing/Other/Footer";
 import React from "react";
 import { gsap } from "gsap";
-
+import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useMemo } from "react";
 
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
 export default function Landing() {
   const GSAP = useMemo(() => gsap, []);
 
   return (
     <main className="App">
-      <Header />
+      <Header GSAP={GSAP} />
       <Intro GSAP={GSAP} />
       <History GSAP={GSAP} />
       <Features GSAP={GSAP} />
       <Roadmap GSAP={GSAP} />
-      <Footer />
+      <Footer GSAP={GSAP} />
     </main>
   );
 }

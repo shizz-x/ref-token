@@ -102,6 +102,7 @@ body {
   background-color: #00000054;
   border-radius: 100%;
   padding: 5px;
+  cursor: pointer;
 }
 .landing_header {
   margin: 1rem 0;
@@ -493,18 +494,25 @@ body {
   justify-content: center;
   align-items: center;
 }
+.landing_header-logo.footer {
+  position: absolute;
+  left: 5rem;
+}
+.landing_footer-ex_links.footer {
+  position: absolute;
+  right: 5rem;
+}
 .landing_footer-content {
-  width: 80%;
+  width: 100%;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   color: #e63334;
 }
 .landing_footer-content h1 {
   font-size: 60px;
   margin: 0;
   font-weight: bold;
-  margin-left: 50px;
   font-family: "druk", monospace;
 }
 .landing_footer-ex_links {
@@ -524,12 +532,24 @@ body {
   align-items: center;
   display: none;
 }
+.mobile-landing_header-nav_links .landing_header-nav_link {
+  border-bottom: #000 solid 3px;
+  width: fit-content;
+}
 .mobile-landing_header-nav_links .tooltip {
   position: absolute;
-  width: 100%;
+  width: calc(100% - 20px);
   overflow: hidden;
+  font-family: "druk", monospace;
   height: 0;
+  color: #000;
   opacity: 0;
+  border-right: 10px solid black;
+  border-left: 10px solid black;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   background-color: #ff0000;
   left: 0;
   top: 50px;
@@ -537,7 +557,7 @@ body {
 }
 .mobile-landing_header-nav_links:hover .tooltip {
   opacity: 1;
-  height: 100px;
+  height: 120px;
 }
 @media screen and (max-width: 2000px) {
   .landing_section-fatboyplaying {
@@ -576,6 +596,17 @@ body {
   }
   .landing_section-batmanthinking {
     bottom: -6%;
+  }
+  .landing_footer-content .landing_header-logo {
+    display: none;
+  }
+  .landing_footer-ex_links.footer {
+    position: relative;
+    right: unset;
+  }
+  .landing_footer-content {
+    width: 100%;
+    flex-direction: column;
   }
 }
 @media screen and (max-width: 1400px) {
@@ -648,10 +679,6 @@ body {
 }
 
 @media screen and (max-width: 1000px) {
-  .landing_footer-content {
-    width: 100%;
-    flex-direction: column;
-  }
   .landing_footer-content .landing_header-logo {
     display: none;
   }

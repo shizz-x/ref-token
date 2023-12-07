@@ -2,9 +2,7 @@ import React, { useEffect, useState } from "react";
 import hellophone from "../../../Images/hellophone.svg";
 import fatboyplaying from "../../../Images/fatboyplaying.svg";
 import gifts from "../../../Images/gifts.svg";
-function sleep(ms) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
-}
+
 const first_Paragraph_Text =
   "Our mission is to enhance the average standard of living through smart investing and fundamental financial education. We aim to build a community of opinion leaders who share eco-friendly values. Our goal is to elevate collective consciousness to a new level - one of abundance, prosperity, happiness, and financial freedom.";
 const second_Paragraph_Text =

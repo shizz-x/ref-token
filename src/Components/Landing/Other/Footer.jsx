@@ -9,11 +9,11 @@ export default function Footer() {
   return (
     <footer className="landing_footer">
       <div className="landing_footer-content">
-        <div className="landing_header-logo">
+        <div className="landing_header-logo footer">
           <img src={logo} alt="" />
         </div>
         <h1>JOIN NOW!</h1>
-        <div className="landing_footer-ex_links">
+        <div className="landing_footer-ex_links footer">
           <img src={tg} alt="" />
           <img src={face} alt="" />
           <img src={inst} alt="" />
