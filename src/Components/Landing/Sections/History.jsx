@@ -92,6 +92,9 @@ export default function History({ GSAP }) {
           animated ? "visible" : ""
         }`}
       >
+        <div>
+          <Cloud progresCloud={progresCloud}></Cloud>
+        </div>
         <img src={batman} alt="" srcset="" />
       </div>
 
@@ -104,9 +107,6 @@ export default function History({ GSAP }) {
           {firstParagraphText}
           {secondParagraphText}
         </div>{" "}
-        <div>
-          <Cloud progresCloud={progresCloud}></Cloud>
-        </div>
       </div>
       <div className="bg_particle"></div>
     </section>

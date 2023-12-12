@@ -69,6 +69,12 @@ body {
 .landing_section-roadmap * {
   z-index: 1;
 }
+.landing_section-batmanthinking img {
+  width: 100%;
+}
+.landing_section-batmanthinking {
+  width: 40rem;
+}
 .landing_section-intro h1,
 .landing_section-history h1,
 .landing_section-features h1,
@@ -126,6 +132,7 @@ body {
   text-align: center;
   border-radius: 1000px;
   padding: 0 1rem;
+  scale: 0.8;
 }
 .landing_header-nav_link {
   display: flex;
@@ -261,17 +268,17 @@ body {
   bottom: -10%;
   right: 0;
 }
-.landing_section-batmanthinking img {
-  width: 40rem;
-}
+
 .landing_section-history .visible {
   opacity: 1;
   transform: translateY(0);
 }
 .landing_section-cloud_wrapper {
-  position: relative;
-  width: 100%;
+  position: absolute;
+  width: 120%;
   display: flex;
+  bottom: 25%;
+  right: 35%;
   justify-content: center;
   align-items: center;
 }
@@ -281,11 +288,8 @@ body {
 .landing_section-cloud_wrapper img {
   position: absolute;
   z-index: 1;
-  width: 80%;
+  width: 100% !important;
   max-width: 80rem;
-}
-#fart {
-  transform: translate(15%, -10%);
 }
 
 .landing_section-cloud_wrapper img.visible {
@@ -330,12 +334,15 @@ body {
 }
 .landing_section-fatboydrinking {
   position: absolute;
-  left: 0%;
+  left: 0;
   z-index: 1;
-  bottom: -5%;
+  bottom: -50px;
   opacity: 0;
-  transform: translateY(200px);
+  width: 30rem;
   transition: transform 1s, opacity 1s;
+}
+.landing_section-fatboydrinking img {
+  width: 100%;
 }
 .info_card {
   display: flex;
@@ -563,23 +570,17 @@ body {
   .landing_section-fatboyplaying {
     width: 50rem;
   }
-  .landing_section-cloud_wrapper img {
-    width: 70%;
-  }
+
   .bg_particle {
     height: 110% !important;
   }
   .landing_section-intro p {
     width: 40%;
   }
-  .landing_section-features {
-    padding-bottom: 300px;
-  }
-  .landing_section-batmanthinking img {
-    width: 40rem;
-  }
+
   .landing_section-batmanthinking {
-    bottom: -6%;
+    width: 39rem;
+    bottom: -100px;
   }
 }
 @media screen and (max-width: 1800px) {
@@ -591,12 +592,7 @@ body {
   .landing_section-history > .landing_section-content {
     padding-bottom: 20rem;
   }
-  .landing_section-batmanthinking img {
-    width: 30rem;
-  }
-  .landing_section-batmanthinking {
-    bottom: -6%;
-  }
+
   .landing_footer-content .landing_header-logo {
     display: none;
   }
@@ -608,11 +604,36 @@ body {
     width: 100%;
     flex-direction: column;
   }
+  .landing_section-batmanthinking {
+    width: 35rem;
+  }
+}
+@media screen and (max-width: 1600px) {
+  .landing_section-batmanthinking {
+    width: 30rem;
+  }
 }
 @media screen and (max-width: 1400px) {
   .landing_section-content {
     margin: 0;
     width: 100vw;
+  }
+  .landing_section-batmanthinking {
+    width: 20rem;
+    bottom: -7%;
+  }
+  .landing_section-features h1 {
+    margin: 2rem;
+  }
+  .landing_section-features_spliter {
+    justify-content: center;
+    align-items: center;
+  }
+  .landing_section-features_spliter img {
+    width: 30%;
+  }
+  .landing_section-features_spliter .info_card {
+    transform: scale(0.5);
   }
   .landing_section-roadmap .info_card {
     transform: scale(0.5);
@@ -635,9 +656,7 @@ body {
   .landing_section-roadmap_spliter {
     justify-content: space-around;
   }
-  .landing_section-cloud_wrapper img {
-    width: 70%;
-  }
+
   #CARD1,
   #CARD2,
   #CARD3,
@@ -678,11 +697,18 @@ body {
   }
 }
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 1100px) {
+  .landing_section-batmanthinking {
+    width: 40%;
+    bottom: -5%;
+  }
+  .landing_section-fatboydrinking {
+    width: 20rem;
+    left: 2%;
+  }
   .landing_footer-content .landing_header-logo {
     display: none;
   }
-
   .landing_header-nav_links {
     display: none;
   }
@@ -694,13 +720,6 @@ body {
     width: 100%;
     font-size: 70px;
     margin: 10rem 0 5rem 0;
-  }
-  .landing_section-fatboydrinking {
-    width: 30rem;
-    left: 2%;
-  }
-  .landing_section-features_spliter img {
-    width: 50vw;
   }
 
   .landing_footer-content h1 {
@@ -715,9 +734,7 @@ body {
     top: -50%;
     max-width: 50vw;
   }
-  .landing_section-cloud_wrapper img {
-    width: 100%;
-  }
+
   .landing_section-history_spliter,
   .landing_section-roadmap_spliter {
     flex-direction: column;
@@ -729,8 +746,15 @@ body {
     width: 80%;
     padding: 0 10%;
   }
-  #fart {
-    transform: translate(-30%, 100px);
+
+  .landing_section-history_spliter p {
+    font-size: 14px;
+  }
+  .landing_section-intro h1,
+  .landing_section-history h1,
+  .landing_section-features h1,
+  .landing_section-roadmap h1 {
+    font-size: 45px;
   }
 }
 @media screen and (max-width: 800px) {
@@ -738,14 +762,15 @@ body {
     width: 200px;
     height: 50px;
   }
-  .landing_section-cloud_wrapper {
-    display: none;
+  .landing_section-roadmap h3 {
+    font-size: 30px;
+    margin: 10px 0;
   }
   .landing_section-intro h1,
   .landing_section-history h1,
   .landing_section-features h1,
   .landing_section-roadmap h1 {
-    font-size: 45px;
+    font-size: 35px;
   }
   .landing_section-intro p,
   .landing_section-history p,
@@ -777,15 +802,16 @@ body {
   .landing_footer-ex_links img {
     width: 50px;
   }
+  .landing_section-features_spliter img {
+    width: 50%;
+  }
   .landing_section-fatboydrinking {
-    width: 20rem;
+    width: 10rem;
     left: 2%;
+    bottom: -6%;
   }
   .landing_section-roadmap .info_card {
     transform: scale(0.3);
-  }
-  .landing_section-roadmap h3 {
-    margin: 3rem 0 3rem 0;
   }
 
   .landing_section-intro h1,
@@ -802,12 +828,7 @@ body {
   .landing_section-gifts {
     width: 100%;
   }
-  .landing_section-batmanthinking img {
-    width: 20rem;
-  }
-  .landing_section-batmanthinking {
-    bottom: -3%;
-  }
+
   .landing_section-roadmap h1,
   .landing_section-history h1 {
     font-size: 35px;
@@ -830,6 +851,35 @@ body {
     left: -20%;
     top: 0;
   }
+  .landing_section-fatboyabudabi {
+    width: 80%;
+  }
+  .landing_section-batmanthinking {
+    width: 10rem;
+  }
+  .landing_section-intro p,
+  .landing_section-history p,
+  .landing_section-features p,
+  .landing_section-roadmap p {
+    font-size: 12px;
+  }
+  .landing_section-intro h1,
+  .landing_section-history h1,
+  .landing_section-features h1,
+  .landing_section-roadmap h1 {
+    font-size: 20px;
+  }
+  .landing_section-intro span,
+  .landing_section-history span,
+  .landing_section-features span,
+  .landing_section-roadmap span,
+  .landing_section-roadmap h3 {
+    font-size: 15px;
+  }
+  .landing_section-roadmap h3 {
+    margin: 0;
+  }
+
   .landing_footer-ex_links {
     width: 70%;
     justify-content: space-between;
@@ -878,5 +928,10 @@ body {
     right: -10%;
     top: unset;
     bottom: 5%;
+  }
+}
+@media screen and (max-width: 350px) {
+  .landing_section-roadmap .info_card {
+    transform: scale(0.3);
   }
 }

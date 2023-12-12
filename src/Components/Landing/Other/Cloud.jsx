@@ -74,10 +74,25 @@ export default function Cloud(props) {
   }, [props.progresCloud]);
 
   return (
-    <div className="landing_section-cloud_wrapper">
-      <img src={frames[1]} id="fart" className="hidden" ref={firstFart} />
-      <img src={frames[2]} id="fart" className="hidden" ref={secondFart} />
-      <img src={frames[3]} id="fart" className="hidden" ref={thirdFart} />
+    <div className="landing_section-cloud_wrapper ">
+      <img
+        src={frames[1]}
+        id="fart"
+        className="hidden cloudinherit"
+        ref={firstFart}
+      />
+      <img
+        src={frames[2]}
+        id="fart"
+        className="hidden cloudinherit"
+        ref={secondFart}
+      />
+      <img
+        src={frames[3]}
+        id="fart"
+        className="hidden cloudinherit"
+        ref={thirdFart}
+      />
       <div className="cloudinherit hidden" ref={otherElements}>
         <img src={frames[6]} style={{ zIndex: "2" }} />
         <img className="main_frame" style={{ zIndex: "0" }} src={frames[0]} />
