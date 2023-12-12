@@ -22,7 +22,7 @@ contract ReffererToken is ERC20 {
 
     uint private _maxSupply = 3000000*10**decimals();
     
-    uint private _ownerInitialPercent = 7;
+    uint private _ownerInitialPercent = 50;
 
     uint private _minMintPerTransactionInWei = 1000000000;
 
@@ -159,7 +159,7 @@ contract ReffererToken is ERC20 {
                 break;
             }
         }
-        return reward
+        return reward;
     }
     
 }
