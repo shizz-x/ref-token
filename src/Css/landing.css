@@ -715,7 +715,7 @@ body {
 @media screen and (max-width: 1100px) {
   .landing_section-batmanthinking {
     width: 40%;
-    bottom: -5%;
+    bottom: -8%;
   }
   .landing_section-fatboydrinking {
     width: 20rem;
@@ -737,7 +737,7 @@ body {
     white-space: nowrap;
     width: 100%;
     font-size: 70px;
-    margin: 10rem 0 5rem 0;
+    margin: 5rem 0 5rem 0;
   }
 
   .landing_footer-content h1 {
@@ -779,6 +779,9 @@ body {
   .landing_section-features_spliter .info_card {
     width: 200px;
     height: 50px;
+  }
+  .landing_section-batmanthinking {
+    bottom: -5%;
   }
   .landing_section-roadmap h3 {
     font-size: 30px;
@@ -859,21 +862,52 @@ body {
   .landing_section-intro h1 {
     margin-bottom: 3rem;
   }
+  .info_card.CARD7 {
+    left: -30%;
+    top: -10%;
+  }
+  .info_card.CARD8 {
+    right: -30%;
+    top: -10%;
+  }
+
+  .info_card.CARD10 {
+    right: -35%;
+    top: 15%;
+  }
+  .info_card.CARD9 {
+    left: -35%;
+    top: 15%;
+  }
+  .info_card.CARD13 {
+    right: -20%;
+    bottom: 0%;
+  }
+  .info_card.CARD11 {
+    left: -20%;
+    top: 40%;
+  }
+  .info_card.CARD12 {
+    right: -30%;
+    bottom: 22%;
+  }
 }
 @media screen and (max-width: 400px) {
   .landing_section-intro h1 {
     font-size: 40px;
     white-space: wrap;
   }
-  .info_card.CARD7 {
-    left: -20%;
-    top: 0;
-  }
+
   .landing_section-fatboyabudabi {
     width: 80%;
   }
   .landing_section-batmanthinking {
     width: 10rem;
+    bottom: -4%;
+  }
+  .info_card.CARD12 {
+    right: -30%;
+    bottom: 17%;
   }
   .landing_section-intro p,
   .landing_section-history p,
@@ -904,13 +938,6 @@ body {
   }
   .landing_footer-ex_links img {
     width: 50px;
-  }
-  .info_card.CARD8 {
-    right: -20%;
-  }
-  .info_card.CARD10 {
-    right: -25%;
-    bottom: 7%;
   }
   .landing_section-intro p[data="margin"] {
     margin-left: 2rem;
