@@ -112,7 +112,6 @@ export default function Roadmap({ GSAP }) {
     }
     if (self.progress >= (1 / cards.length) * 7) {
       cards[6].current.classList.add("visible");
-      cards[3].current.classList.remove("visible");
     } else {
       cards[6].current.classList.remove("visible");
     }
@@ -169,18 +168,18 @@ export default function Roadmap({ GSAP }) {
             <h2>4</h2>
             <div>A safe environment for first steps in investing.</div>
           </div>
-          <div className="info_card CARD7" ref={card5} id="CARD10">
+          <div className="info_card CARD11" ref={card5} id="CARD10">
             <h2>5</h2>
             <div>Understanding of current investment tools and methods.</div>
           </div>
-          <div className="info_card CARD8" ref={card6} id="CARD10">
+          <div className="info_card CARD12" ref={card6} id="CARD10">
             <h2>6</h2>
             <div>
               Working through limiting beliefs and integrating mindsets of
               abundance and prosperity.
             </div>
           </div>
-          <div className="info_card CARD9" ref={card7} id="CARD10">
+          <div className="info_card CARD13" ref={card7} id="CARD10">
             <h2>7</h2>
             <div>
               Self-expression within a community of like-minded individuals.

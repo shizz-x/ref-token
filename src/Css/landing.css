@@ -468,7 +468,7 @@ body {
   font-weight: 700;
 }
 .landing_section-fatboyabudabi {
-  width: 600px;
+  width: 400px;
   max-width: 900px;
 }
 .landing_section-roadmap .info_card > div {
@@ -478,19 +478,36 @@ body {
   position: relative;
 }
 .info_card.CARD7 {
-  left: -30%;
-  top: 0;
+  left: -40%;
+  top: -10%;
 }
 .info_card.CARD8 {
-  right: -30%;
+  right: -40%;
+  top: -10%;
+}
+
+.info_card.CARD10 {
+  right: -50%;
+  top: 15%;
 }
 .info_card.CARD9 {
-  bottom: 10%;
-  left: -20%;
+  left: -50%;
+  top: 15%;
 }
-.info_card.CARD10 {
+.info_card.CARD13 {
   right: -30%;
-  bottom: 7%;
+  bottom: 0%;
+}
+.info_card.CARD11 {
+  top: 40%;
+  left: -40%;
+}
+.info_card.CARD12 {
+  right: -50%;
+  bottom: 22%;
+}
+.landing_section-roadmap .info_card {
+  transform: scale(0.5);
 }
 
 /* :footer */
@@ -635,9 +652,7 @@ body {
   .landing_section-features_spliter .info_card {
     transform: scale(0.5);
   }
-  .landing_section-roadmap .info_card {
-    transform: scale(0.5);
-  }
+
   .landing_section-intro p {
     padding: 0 0 0 4rem;
   }
@@ -705,6 +720,9 @@ body {
   .landing_section-fatboydrinking {
     width: 20rem;
     left: 2%;
+  }
+  .landing_section-roadmap .info_card > div {
+    font-size: 22px;
   }
   .landing_footer-content .landing_header-logo {
     display: none;
