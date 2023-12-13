@@ -192,7 +192,8 @@ body {
 }
 .landing_section-hellophone {
   position: absolute;
-  top: 0;
+  top: -10%;
+  right: 20%;
   height: 100%;
 }
 .landing_section-fatboyplaying {
@@ -599,6 +600,12 @@ body {
     width: 39rem;
     bottom: -100px;
   }
+  .landing_section-features h1 {
+    margin: 1rem;
+  }
+  .landing_section-features_spliter {
+    transform: scale(0.8);
+  }
 }
 @media screen and (max-width: 1800px) {
   .landing_section-hellophone {
@@ -625,15 +632,59 @@ body {
     width: 35rem;
   }
 }
-@media screen and (max-width: 1600px) {
+@media screen and (max-width: 1700px) {
   .landing_section-batmanthinking {
     width: 30rem;
   }
+  .landing_section-features_spliter img {
+    height: 50vh;
+  }
+  #CARD1,
+  #CARD2,
+  #CARD3,
+  #CARD4,
+  #CARD5,
+  #CARD6 {
+    right: unset;
+    top: 0;
+    left: 30%;
+  }
+  #CARD1 {
+    left: -10%;
+  }
+
+  #CARD2 {
+    right: -10%;
+    left: unset;
+  }
+  #CARD3 {
+    left: -10%;
+    top: 40%;
+  }
+  #CARD4 {
+    right: -10%;
+    left: unset;
+    top: 40%;
+  }
+  #CARD5 {
+    left: -10%;
+    top: unset;
+    bottom: 5%;
+  }
+  #CARD6 {
+    left: unset;
+    right: -10%;
+    top: unset;
+    bottom: 5%;
+  }
 }
-@media screen and (max-width: 1400px) {
+@media screen and (max-width: 1550px) {
   .landing_section-content {
     margin: 0;
     width: 100vw;
+  }
+  .landing_section-features_spliter {
+    transform: scale(1);
   }
   .landing_section-batmanthinking {
     width: 20rem;
@@ -646,9 +697,7 @@ body {
     justify-content: center;
     align-items: center;
   }
-  .landing_section-features_spliter img {
-    width: 30%;
-  }
+
   .landing_section-features_spliter .info_card {
     transform: scale(0.5);
   }
@@ -670,45 +719,6 @@ body {
   }
   .landing_section-roadmap_spliter {
     justify-content: space-around;
-  }
-
-  #CARD1,
-  #CARD2,
-  #CARD3,
-  #CARD4,
-  #CARD5,
-  #CARD6 {
-    right: unset;
-    top: 0;
-    left: 30%;
-  }
-  #CARD1 {
-    left: 0;
-  }
-
-  #CARD2 {
-    right: 0;
-    left: unset;
-  }
-  #CARD3 {
-    left: 0;
-    top: 40%;
-  }
-  #CARD4 {
-    right: 0;
-    left: unset;
-    top: 40%;
-  }
-  #CARD5 {
-    left: 0;
-    top: unset;
-    bottom: 5%;
-  }
-  #CARD6 {
-    left: unset;
-    right: 0;
-    top: unset;
-    bottom: 5%;
   }
 }
 
