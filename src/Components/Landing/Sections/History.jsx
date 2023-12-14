@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import batman from "../../../Images/batmansthinking.svg";
 import Cloud from "../Other/Cloud";
+import CloudBig from "../Other/visib";
 const defaultprog = 0.0001;
 const first_Paragraph_Text =
   "The initial stage involves creating LAZYcoin to attract an audience and form a community. Acquiring LAZYcoin provides access to our products and the chance to be part of our digital ecosystem. This community unites people who share similar values and perspectives on life - love, kindness, honesty, openness, and the principles of shaping reality and consciousness. It recognizes that our reality reflects our thoughts and beliefs.";
@@ -106,7 +107,9 @@ export default function History({ GSAP }) {
         <div className="landing_section-history_spliter">
           {firstParagraphText}
           {secondParagraphText}
-        </div>{" "}
+        </div>
+
+        <CloudBig progresCloud={progresCloud}></CloudBig>
       </div>
       <div className="bg_particle"></div>
     </section>

@@ -74,6 +74,7 @@ body {
 }
 .landing_section-batmanthinking {
   width: 40rem;
+  z-index: 3;
 }
 .landing_section-intro h1,
 .landing_section-history h1,
@@ -194,11 +195,12 @@ body {
   position: absolute;
   top: -10%;
   right: 20%;
+  max-width: 500px;
   height: 100%;
 }
 .landing_section-fatboyplaying {
   position: absolute;
-  width: 70rem;
+  width: 40rem;
   right: 5%;
   bottom: -10%;
 }
@@ -207,6 +209,12 @@ body {
   right: 0;
   bottom: -20%;
   z-index: 0;
+}
+.landing_section-cloud_wrapper.visib {
+  position: relative;
+  width: 70%;
+  right: inherit;
+  bottom: inherit;
 }
 @keyframes tilt-n-move-shaking {
   0% {
@@ -637,7 +645,7 @@ body {
     width: 30rem;
   }
   .landing_section-features_spliter img {
-    height: 50vh;
+    height: 800px;
   }
   #CARD1,
   #CARD2,
@@ -683,6 +691,15 @@ body {
     margin: 0;
     width: 100vw;
   }
+  .landing_section-intro h1,
+  .landing_section-history h1,
+  .landing_section-features h1,
+  .landing_section-roadmap h1 {
+    font-size: 45px;
+  }
+  .landing_section-features_spliter img {
+    height: 500px;
+  }
   .landing_section-features_spliter {
     transform: scale(1);
   }
@@ -726,6 +743,9 @@ body {
   .landing_section-batmanthinking {
     width: 40%;
     bottom: -8%;
+  }
+  .landing_section-features_spliter img {
+    height: 500px;
   }
   .landing_section-fatboydrinking {
     width: 20rem;
@@ -778,17 +798,14 @@ body {
   .landing_section-history_spliter p {
     font-size: 14px;
   }
-  .landing_section-intro h1,
-  .landing_section-history h1,
-  .landing_section-features h1,
-  .landing_section-roadmap h1 {
-    font-size: 45px;
-  }
 }
 @media screen and (max-width: 800px) {
   .landing_section-features_spliter .info_card {
     width: 200px;
     height: 50px;
+  }
+  .landing_section-features_spliter img {
+    height: 400px;
   }
   .landing_section-batmanthinking {
     bottom: -5%;
@@ -825,6 +842,9 @@ body {
   }
   .landing_footer-content h1 {
     font-size: 35px;
+  }
+  .landing_section-cloud_wrapper.visib {
+    width: 100%;
   }
   .landing_footer-ex_links {
     width: 50%;
@@ -912,7 +932,7 @@ body {
     width: 80%;
   }
   .landing_section-batmanthinking {
-    width: 10rem;
+    width: 12rem;
     bottom: -4%;
   }
   .info_card.CARD12 {
